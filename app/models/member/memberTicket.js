@@ -24,6 +24,7 @@ module.exports = {
               date_started: e.date_started,
               date_ended: e.date_ended,
               used: 0,
+              svg: process.env.PATH_SVG + e.svg,
               created_at: e.created_at,
             };
           });
