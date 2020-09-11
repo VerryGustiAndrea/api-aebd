@@ -7,7 +7,7 @@ module.exports = {
 
     return new Promise((resolve, reject) => {
       connection.query(
-        "SELECT * FROM ticket JOIN event ON ticket.id_event=event.id_event WHERE member_id=?",
+        "SELECT * FROM ticket JOIN event ON ticket.id_event=event.id_event WHERE member_id=? ORDER BY date_started DESC",
         member_id,
         (err, result) => {
           let data = result.map((e) => {
