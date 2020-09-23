@@ -7,9 +7,10 @@ module.exports = {
 
     return new Promise((resolve, reject) => {
       connection.query(
-        "SELECT * FROM ticket JOIN event ON ticket.id_event=event.id_event WHERE member_id=? ORDER BY date_started DESC",
+        "SELECT * FROM ticket  JOIN booking_order ON ticket.id_booking_order=booking_order.id_booking_order JOIN event ON booking_order.id_event=event.id_event WHERE booking_order.member_id=? AND booking_order.status=3 ORDER BY ticket.id_ticket DESC",
         member_id,
         (err, result) => {
+          // console.log(result);
           let data = result.map((e) => {
             return {
               name_event: e.name_event,

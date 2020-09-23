@@ -24,7 +24,7 @@ Router
   .get("/getMemberTicket", MemberTicketController.getMemberTicket)
   .get(
     "/getMemberHistoryTransaction",
-    auth.verify,
+    // auth.verify,
     MemberHistoryTransactionController.getAllHistoryTransaction
   )
   .get(
