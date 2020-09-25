@@ -403,16 +403,6 @@ module.exports = {
                               Hi <span style="color: #be1e2d;">` +
       name +
       `</span>,
-                                              You have made Transactions on ` +
-      payment_date +
-      `.
-                                              You got ` +
-      pointGet +
-      ` Point cause you spent ` +
-      total_price +
-      ` IDR, now you have ` +
-      totalPoint +
-      `Point,
                             </p>
                             <p
                               style="
@@ -424,11 +414,37 @@ module.exports = {
                                 line-height: 2em;
                               "
                             >
-                            Thank you for Transaction at Red Ruby.
-                         
-                            You can check your Point Info on Red Ruby
-                            Membership.
+                            BE A PART OF US 
+                            BY JOINING RED RUBY'S MEMBERSHIP PROGRAM!
+
                             </p>
+
+
+                            <p
+                            style="
+                              font-family: 'Montserrat', sans-serif;
+                              font-size: 14px;
+                              font-weight: normal;
+                              margin: 0;
+                              margin-bottom: 15px;
+                              line-height: 2em;
+                            "
+                          >
+                          Exciting experiences await you! Gain every benefit by becoming our members. 
+Earning points for every transaction in Red Ruby Group business and partner.
+Redeem any interesting things from RR Group business and partner from your reward points.
+Get any special discount in the Red Ruby Group business and partner.
+Be the first one to get our news & updates.
+Any many more you will get.
+
+Are you ready to take another incredible journey with us? Simply click [link untuk registrasi] to register yourself and become our family! 
+
+
+Warm Regards,
+
+Red Ruby Club.
+
+                          </p>
                             <table
                               border="0"
                               cellpadding="0"
