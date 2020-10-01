@@ -39,6 +39,8 @@ module.exports = {
       phone: req.body.phone,
       member_id: generateMemberId(),
       uuid: Randomtoken,
+      point_level: 0,
+      verified: 0,
     };
 
     //get email from database where email=email_inputan
@@ -81,7 +83,7 @@ module.exports = {
             }
 
             //Send Email Welcome
-            console.log(data.email, data.name);
+            // console.log(data.email, data.name);
             serviceEmailWelcome.sendMail(req, res, data.email, data.name);
           });
         } else {
@@ -128,6 +130,8 @@ module.exports = {
       phone: req.body.phone,
       member_id: generateMemberId(),
       uuid: Randomtoken,
+      point_level: 0,
+      verified: 0,
     };
 
     //get email from database where email=email_inputan
