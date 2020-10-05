@@ -6,12 +6,16 @@ module.exports = {
       let data = {
         id_user: "",
         name: "",
+        gender: "",
+        display_picture: "",
+        dob: "",
         email: "",
         passwordsql: "",
         type: "",
         phone: 0,
         member_id: "",
         uuid: "",
+        point_level: "",
       };
       connection.query(
         "SELECT * FROM user WHERE email= ? ",
@@ -20,12 +24,16 @@ module.exports = {
           result.forEach((e) => {
             data.id_user = e.id_user;
             data.name = e.name;
+            data.gender = e.gender;
+            data.display_picture = e.display_picture;
+            data.dob = e.dob;
             data.email = e.email;
             data.passwordsql = e.credential;
             data.type = e.type;
             data.phone = e.phone;
             data.member_id = e.member_id;
             data.uuid = e.uuid;
+            data.point_level = e.point_level;
           });
 
           if (!err && result.length > 0) {

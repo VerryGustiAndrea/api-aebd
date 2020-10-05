@@ -51,6 +51,21 @@ module.exports = {
       );
   },
 
+  changePhotoProfile: (req, res) => {
+    let id_user = req.headers["id_user"];
+    let images = req.file.filename;
+    profileModel
+      .changePhotoProfile(images, id_user)
+      .then((result) => {
+        if (result.length === 0) {
+          return MiscHelper.responsesNull(res);
+        } else {
+          return MiscHelper.responses(res, images);
+        }
+      })
+      .catch((err) => MiscHelper.badRequest(res, err));
+  },
+
   // updateProfile: (req, res) => {
   //   let id_user = req.headers["id_user"];
   //   let data = {
@@ -75,21 +90,6 @@ module.exports = {
   //             return MiscHelper.responses(res, result);
   //           })
   //           .catch((err) => MiscHelper.badRequest(res, err));
-  //       }
-  //     })
-  //     .catch((err) => MiscHelper.badRequest(res, err));
-  // },
-
-  // changePhotoProfile: (req, res) => {
-  //   let id_user = req.headers["id_user"];
-  //   let images = `http://54.166.135.115:4000/uploads/${req.file.filename}`;
-  //   profileModel
-  //     .changePhotoProfile(images, id_user)
-  //     .then((result) => {
-  //       if (result.length === 0) {
-  //         return MiscHelper.responsesNull(res);
-  //       } else {
-  //         return MiscHelper.responses(res, images);
   //       }
   //     })
   //     .catch((err) => MiscHelper.badRequest(res, err));

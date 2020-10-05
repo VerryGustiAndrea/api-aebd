@@ -34,6 +34,23 @@ module.exports = {
     });
   },
 
+  //CHANGE PHOTO PROFILE
+  changePhotoProfile: (images, id_user) => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        "UPDATE user SET display_picture = ? , verified=0 WHERE id_user=?",
+        [images, id_user],
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
+
   // editProfile: (data, id_user) => {
   //   return new Promise((resolve, reject) => {
   //     connection.query(
@@ -88,23 +105,6 @@ module.exports = {
 
   //         if (!err && result.length > 0) {
   //           resolve(data);
-  //         } else {
-  //           reject(new Error(err));
-  //         }
-  //       }
-  //     );
-  //   });
-  // },
-
-  // //CHANGE PHOTO PROFILE
-  // changePhotoProfile: (images, id_user) => {
-  //   return new Promise((resolve, reject) => {
-  //     connection.query(
-  //       "UPDATE tb_user SET display_picture = ? WHERE id_user=?",
-  //       [images, id_user],
-  //       (err, result) => {
-  //         if (!err) {
-  //           resolve(result);
   //         } else {
   //           reject(new Error(err));
   //         }

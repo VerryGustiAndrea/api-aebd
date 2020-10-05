@@ -31,7 +31,13 @@ module.exports = {
               let dataUser = {
                 id_user: dataTmp.id_user,
                 name: dataTmp.name,
-                last_name: dataTmp.last_name,
+                gender: dataTmp.gender,
+                display_picture:
+                  `http://` +
+                  process.env.HOST +
+                  `:4002/dp/` +
+                  dataTmp.display_picture,
+                dob: dataTmp.dob,
                 email: dataTmp.email,
                 type: dataTmp.type,
                 phone: dataTmp.phone,
@@ -90,6 +96,13 @@ module.exports = {
             let dataUser = {
               id_user: dataTmp.id_user,
               name: dataTmp.name,
+              gender: dataTmp.gender,
+              display_picture:
+                `http://` +
+                process.env.HOST +
+                `:4002/dp/` +
+                dataTmp.display_picture,
+              dob: dataTmp.dob,
               email: dataTmp.email,
               type: dataTmp.type,
               phone: dataTmp.phone,

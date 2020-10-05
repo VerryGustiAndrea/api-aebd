@@ -8,6 +8,7 @@ const port = process.env.SERVER_PORT;
 
 app.use("/uploads", express.static("./uploads"));
 app.use("/ticket", express.static("./app/helpers/pdf"));
+app.use("/dp", express.static("./uploads/memberDisplayPicture"));
 app.use(cors());
 
 app.use(bodyParser.json());

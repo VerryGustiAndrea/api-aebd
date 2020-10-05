@@ -1,6 +1,18 @@
 const express = require("express");
 const Router = express.Router();
 
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads/memberDisplayPicture");
+  },
+  filename: function (req, file, cb) {
+    cb(null, new Date().toISOString() + file.originalname.replace(/\s+/g, "-"));
+  },
+});
+const upload = multer({ storage });
+
 const RegisterController = require("../../controllers/member/register");
 const LoginController = require("../../controllers/member/login");
 const ProfileController = require("../../controllers/member/profile");
@@ -20,6 +32,11 @@ Router
   .post("/registerGoogle", RegisterController.registerMemberGoogle)
   .post("/forgotPassword", LoginController.forgotPassword)
   .put("/changePassword", auth.verify, ProfileController.changePassword)
+  .put(
+    "/changePhotoProfile",
+    upload.single("image"),
+    ProfileController.changePhotoProfile
+  )
 
   .get("/getMemberTicket", MemberTicketController.getMemberTicket)
   .get(
