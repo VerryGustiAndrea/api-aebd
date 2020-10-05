@@ -3,11 +3,11 @@ const MiscHelper = require("../../helpers/helpers");
 
 module.exports = {
   getAllHistoryPoint: (req, res) => {
-    let id_user = req.headers["id_user"];
-    console.log(id_user);
+    let email = req.headers["email"];
+    // console.log(id_user);
 
     historyPointModel
-      .getAllHistoryPoint(id_user)
+      .getAllHistoryPoint(email)
       .then((result) => {
         if (result.length === 0) {
           return MiscHelper.responsesNull(res);

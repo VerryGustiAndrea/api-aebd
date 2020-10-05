@@ -6,6 +6,7 @@ const service = require("../../config/gmail");
 const template = require("../../helpers/templateEmail/templateWelcome");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const axios = require("axios");
 
 const serviceEmailWelcome = require("../../helpers/sendEmail/emailWelcome");
 
@@ -33,6 +34,8 @@ module.exports = {
 
     let data = {
       name: req.body.name,
+      gender: req.body.gender,
+      dob: new Date(req.body.dob),
       email: req.body.email,
       credential: hash,
       type: "Email",
@@ -43,6 +46,8 @@ module.exports = {
       verified: 0,
     };
 
+    // console.log(data);
+
     //get email from database where email=email_inputan
     registerModel
       .checkEmailRegister(data.email)
@@ -50,12 +55,75 @@ module.exports = {
         //check email sudah terdaftar atau belum
         if (e.length == 0) {
           //check if member_id exist in database
-          registerModel.checkToken(data.member_id).then((f) => {
+          registerModel.checkToken(data.member_id).then(async (f) => {
             if (f.length == 0) {
               //insert into member
+
+              //insert into member
+              let tmpData = [];
+              try {
+                tmpData = await registerModel.checkTmpUser(data.email);
+              } catch (error) {
+                console.log("error check tmp data");
+              }
+              if (tmpData.length == 0) {
+                console.log("email not found in data TMP");
+              } else {
+                //check Point TMP
+
+                let pointTMP = [];
+                try {
+                  pointTMP = await registerModel.checkPointTMP(data.email);
+                } catch (error) {
+                  console.log("error check point TMP");
+                  return MiscHelper.badRequest(res, error);
+                }
+                //set New Point
+                data.point_level = pointTMP[0].total_point_after + 50;
+                //reward 50 point started
+              }
+
               registerModel
                 .registerUser(data)
                 .then((result) => {
+                  // try {
+                  let dataPointReward = {
+                    name: data.name,
+                    email: data.email,
+                    order_id: new Date().valueOf(),
+                    order_picture: "",
+                    total_price: 125000,
+                    type_order: 7, //identy beli dari siapa web/club/terrace(menggunakan role)
+                    status: 1,
+                    desc: "registration reward",
+                    payment_date: new Date(),
+                    created_at: new Date(),
+                  };
+
+                  // console.log(dataPointReward);
+
+                  //Earn Point
+                  try {
+                    axios({
+                      method: "post",
+                      url:
+                        "http://" +
+                        process.env.HOST +
+                        ":4004/api/point/transactionPoint", //to Endpoint Check Point
+                      headers: {},
+                      data: dataPointReward,
+                    })
+                      .then((result) => {
+                        // console.log(result);
+                        // return MiscHelper.responses(res, result.data);
+                        console.log("suscess insert log_history_point");
+                      })
+                      .catch((err) => console.log(err));
+                  } catch (error) {
+                    console.log("Error Earn Point");
+                    return MiscHelper.badRequest(res, error);
+                  }
+
                   res.json({
                     message: "Register Success",
                     status: true,
@@ -143,7 +211,6 @@ module.exports = {
           //check if member_id exist in database
           registerModel.checkToken(data.member_id).then((f) => {
             if (f.length == 0) {
-              //insert into member
               registerModel
                 .registerUser(data)
                 .then((result) => {

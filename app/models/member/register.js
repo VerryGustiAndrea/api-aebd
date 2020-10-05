@@ -45,6 +45,38 @@ module.exports = {
     });
   },
 
+  checkTmpUser: (email) => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        "SELECT * FROM tmp_user WHERE email=?",
+        email,
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
+
+  checkPointTMP: (email) => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        "SELECT * FROM log_history_point WHERE email=? ORDER BY created_at DESC LIMIT 1",
+        email,
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
+
   // insertRelUser: (dataUserNew) => {
   //   return new Promise((resolve, reject) => {
   //     connection.query(
