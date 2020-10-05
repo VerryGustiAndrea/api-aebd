@@ -33,6 +33,8 @@ module.exports = {
             data.phone = e.phone;
             data.member_id = e.member_id;
             data.uuid = e.uuid;
+            data.facebook = e.facebook;
+            data.instagram = e.instagram;
             data.point_level = e.point_level;
           });
 

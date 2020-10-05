@@ -43,6 +43,8 @@ module.exports = {
                 phone: dataTmp.phone,
                 member_id: dataTmp.member_id,
                 session_token: Randomtoken,
+                facebook: dataTmp.facebook,
+                instagram: dataTmp.instagram,
               };
               res.json({
                 message: "success",
@@ -108,6 +110,8 @@ module.exports = {
               phone: dataTmp.phone,
               member_id: dataTmp.member_id,
               session_token: Randomtoken,
+              facebook: dataTmp.facebook,
+              instagram: dataTmp.instagram,
             };
             res.json({
               message: "success",
