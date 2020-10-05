@@ -43,6 +43,8 @@ module.exports = {
       member_id: generateMemberId(),
       uuid: Randomtoken,
       point_level: 0,
+      facebook: "",
+      instagram: "",
       verified: 0,
     };
 
@@ -67,7 +69,6 @@ module.exports = {
                 console.log("error check tmp data");
               }
               if (tmpData.length == 0) {
-                console.log("email not found in data TMP");
               } else {
                 //check Point TMP
 
