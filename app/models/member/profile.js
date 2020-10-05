@@ -51,21 +51,21 @@ module.exports = {
     });
   },
 
-  // editProfile: (data, id_user) => {
-  //   return new Promise((resolve, reject) => {
-  //     connection.query(
-  //       `UPDATE rel_user, tb_user SET tb_user.first_name='${data.first_name}', tb_user.last_name='${data.last_name}',tb_user.identity_number='${data.identity_number}', tb_user.email='${data.email}', tb_user.phone_number='${data.phone_number}', rel_user.id_fakultas='${data.fakultas}', rel_user.id_prodi='${data.prodi}' ,rel_user.updated_at=? WHERE rel_user.id_user = tb_user.id_user and tb_user.id_user = ?`,
-  //       [data.updated_at, id_user],
-  //       (err, result) => {
-  //         if (!err) {
-  //           resolve(result);
-  //         } else {
-  //           reject(new Error(err));
-  //         }
-  //       }
-  //     );
-  //   });
-  // },
+  editProfile: (data, id_user) => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        `UPDATE user SET facebook='${data.facebook}', instagram='${data.instagram}' WHERE id_user= ?`,
+        id_user,
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
 
   // checkUser: (email) => {
   //   return new Promise((resolve, reject) => {

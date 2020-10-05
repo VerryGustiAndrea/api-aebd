@@ -37,6 +37,7 @@ Router
     upload.single("image"),
     ProfileController.changePhotoProfile
   )
+  .put("/UpdateProfileSosmed", ProfileController.updateProfile)
 
   .get("/getMemberTicket", MemberTicketController.getMemberTicket)
   .get(

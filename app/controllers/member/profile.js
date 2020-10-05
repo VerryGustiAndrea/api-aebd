@@ -66,32 +66,21 @@ module.exports = {
       .catch((err) => MiscHelper.badRequest(res, err));
   },
 
-  // updateProfile: (req, res) => {
-  //   let id_user = req.headers["id_user"];
-  //   let data = {
-  //     first_name: req.body.first_name,
-  //     last_name: req.body.last_name,
-  //     identity_number: req.body.identity_number,
-  //     email: req.body.email,
-  //     phone_number: req.body.phone_number,
-  //     fakultas: req.body.fakultas,
-  //     prodi: req.body.prodi,
-  //     updated_at: new Date(),
-  //   };
-  //   profileModel
-  //     .editProfile(data, id_user)
-  //     .then((result) => {
-  //       if (result.length === 0) {
-  //         return MiscHelper.responsesNull(res);
-  //       } else {
-  //         profileModel
-  //           .checkUser(data.email)
-  //           .then((result) => {
-  //             return MiscHelper.responses(res, result);
-  //           })
-  //           .catch((err) => MiscHelper.badRequest(res, err));
-  //       }
-  //     })
-  //     .catch((err) => MiscHelper.badRequest(res, err));
-  // },
+  updateProfile: (req, res) => {
+    let id_user = req.headers["id_user"];
+    let data = {
+      facebook: req.body.facebook,
+      instagram: req.body.instagram,
+    };
+    profileModel
+      .editProfile(data, id_user)
+      .then((result) => {
+        if (result.length === 0) {
+          return MiscHelper.responsesNull(res);
+        } else {
+          return MiscHelper.responses(res, "success update profile");
+        }
+      })
+      .catch((err) => MiscHelper.badRequest(res, err));
+  },
 };
