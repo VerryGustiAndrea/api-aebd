@@ -64,4 +64,13 @@ module.exports = {
     resultPrint.err = err || null;
     return res.status(resultPrint.code).json(resultPrint);
   },
+
+  responsesCustomForbidden: (res, result, customMsg, status, code) => {
+    let resultPrint = {};
+    resultPrint.message = customMsg;
+    resultPrint.status = status;
+    resultPrint.code = code;
+    resultPrint.data = result;
+    return res.status(resultPrint.code).json(resultPrint);
+  },
 };

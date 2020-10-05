@@ -17,6 +17,14 @@ module.exports = {
     const salt = bcrypt.genSaltSync(saltRounds);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
+    //check AGE
+    function calculate_age(dob) {
+      var diff_ms = Date.now() - dob.getTime();
+      var age_dt = new Date(diff_ms);
+
+      return Math.abs(age_dt.getUTCFullYear() - 1970);
+    }
+
     //Generate Member ID
     let generateMemberId = () => {
       let chars = "abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ";
@@ -49,7 +57,15 @@ module.exports = {
     };
 
     // console.log(data);
-
+    if (calculate_age(new Date(data.dob)) < 18) {
+      return MiscHelper.responsesCustomForbidden(
+        res,
+        null,
+        "You are not old enough",
+        false,
+        403
+      );
+    }
     //get email from database where email=email_inputan
     registerModel
       .checkEmailRegister(data.email)
