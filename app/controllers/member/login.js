@@ -83,13 +83,8 @@ module.exports = {
   loginGoogle: (req, res) => {
     let email = req.body.email;
     let tokenGoogle = req.body.tokenGoogle;
-    console.log(tokenGoogle);
+    // console.log(tokenGoogle);
     //Check Token Google
-
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-      databaseURL: "https://redrubygroups-f93fd.firebaseio.com",
-    });
 
     // idToken comes from the client app
     admin
@@ -102,7 +97,7 @@ module.exports = {
         loginModel
           .checkUserGoogleLogin(email)
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             let dataTmp = data;
 
             //genereate random token
@@ -132,7 +127,7 @@ module.exports = {
                   facebook: dataTmp.facebook,
                   instagram: dataTmp.instagram,
                 };
-                console.log(dataUser);
+                // console.log(dataUser);
                 res.json({
                   message: "success",
                   status: true,

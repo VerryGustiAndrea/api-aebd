@@ -153,20 +153,15 @@ module.exports = {
                 .catch((err) => MiscHelper.badRequest(res, err));
             } else {
               //generate new member_id
-              generateMemberId();
-              data.member_id = generateMemberId();
+              // generateMemberId();
+              // data.member_id = generateMemberId();
               //insert into member
-              registerModel
-                .registerUser(data)
-                .then((result) => {
-                  res.json({
-                    message: "Register Success",
-                    status: true,
-                    code: 200,
-                    data,
-                  });
-                })
-                .catch((err) => MiscHelper.badRequest(res, err));
+              res.json({
+                message: "Sorry Please Try Again Later",
+                status: false,
+                code: 403,
+                data: null,
+              });
             }
 
             //Send Email Welcome
@@ -345,21 +340,13 @@ module.exports = {
                     })
                     .catch((err) => MiscHelper.badRequest(res, err));
                 } else {
-                  //generate new member_id
-                  generateMemberId();
-                  data.member_id = generateMemberId();
-                  //insert into member
-                  registerModel
-                    .registerUser(data)
-                    .then((result) => {
-                      res.json({
-                        message: "Register Success",
-                        status: true,
-                        code: 200,
-                        data,
-                      });
-                    })
-                    .catch((err) => MiscHelper.badRequest(res, err));
+                  //dupllicate id member please reload page
+                  res.json({
+                    message: "Sorry Please Try Again Later",
+                    status: false,
+                    code: 403,
+                    data: null,
+                  });
                 }
 
                 //Send Email Welcome

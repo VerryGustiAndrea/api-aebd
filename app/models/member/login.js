@@ -11,7 +11,7 @@ module.exports = {
         dob: "",
         email: "",
         passwordsql: "",
-        member_type: "",
+        member_type: 0,
         phone: 0,
         member_id: "",
         uuid: "",
@@ -39,7 +39,13 @@ module.exports = {
             data.facebook = e.facebook;
             data.instagram = e.instagram;
           });
-
+          if (data.point_level < 10000) {
+            data.member_type = 0;
+          } else if (data.point_level < 100000) {
+            data.member_type = 1;
+          } else if (data.point_level >= 10000) {
+            data.member_type = 2;
+          }
           if (!err && result.length > 0) {
             resolve(data);
           } else {
@@ -60,7 +66,7 @@ module.exports = {
         dob: "",
         email: "",
         // passwordsql: "",
-        member_type: "",
+        member_type: 0,
         phone: 0,
         member_id: "",
         uuid: "",
@@ -90,11 +96,11 @@ module.exports = {
           });
 
           if (data.point_level < 10000) {
-            data.member_type = "RED MEMBER";
+            data.member_type = 0;
           } else if (data.point_level < 100000) {
-            data.member_type = "GOLD MEMBER";
+            data.member_type = 1;
           } else if (data.point_level >= 10000) {
-            data.member_type = "BLACK MEMBER";
+            data.member_type = 2;
           }
 
           if (!err && result.length > 0) {
