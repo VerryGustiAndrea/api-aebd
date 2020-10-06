@@ -75,6 +75,29 @@ module.exports = {
   },
   //END LOGIN EMAIL
 
+  // //firebase
+
+  // admin.initializeApp({
+  //   credential: admin.credential.cert(serviceAccount),
+  //   databaseURL: "https://redrubygroups-f93fd.firebaseio.com",
+  // });
+
+  // // idToken comes from the client app
+  // admin
+  //   .auth()
+  //   .verifyIdToken(tokenGoogle)
+  //   .then(function (decodedToken) {
+  //     console.log("accept");
+
+  //   })
+  //   .catch(function (error) {
+  //     MiscHelper.responsesCustomForbidden(
+  //       res,
+  //       null,
+  //       "Token Google Not Valid"
+  //     );
+  //   });
+
   //START LOGIN GOOGLE
   loginGoogle: (req, res) => {
     let email = req.body.email;
