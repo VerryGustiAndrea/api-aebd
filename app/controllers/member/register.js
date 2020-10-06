@@ -52,7 +52,7 @@ module.exports = {
       phone: req.body.phone,
       member_id: generateMemberId(),
       uuid: Randomtoken,
-      point_level: 0,
+      point_level: 50,
       facebook: "",
       instagram: "",
       verified: 0,
@@ -245,7 +245,7 @@ module.exports = {
           phone: req.body.phone,
           member_id: generateMemberId(),
           uuid: Randomtoken,
-          point_level: 0,
+          point_level: 50,
           facebook: "",
           instagram: "",
           verified: 0,
@@ -383,7 +383,9 @@ module.exports = {
         MiscHelper.responsesCustomForbidden(
           res,
           null,
-          "Token Google Not Valid"
+          "Token Google Not Valid",
+          false,
+          403
         );
       });
   },

@@ -4,6 +4,8 @@ const MiscHelper = require("../../helpers/helpers");
 const nodemailer = require("nodemailer");
 const service = require("../../config/gmail");
 const bcrypt = require("bcrypt");
+const admin = require("firebase-admin");
+const serviceAccount = require("../../config/redrubygroups-f93fd-firebase-adminsdk-2hny4-454f9c9d7f.json");
 
 module.exports = {
   //START LOGIN EMAIL
@@ -39,7 +41,7 @@ module.exports = {
                   dataTmp.display_picture,
                 dob: dataTmp.dob,
                 email: dataTmp.email,
-                type: dataTmp.type,
+                member_type: dataTmp.member_type,
                 phone: dataTmp.phone,
                 member_id: dataTmp.member_id,
                 session_token: Randomtoken,
@@ -77,82 +79,89 @@ module.exports = {
 
   // //firebase
 
-  // admin.initializeApp({
-  //   credential: admin.credential.cert(serviceAccount),
-  //   databaseURL: "https://redrubygroups-f93fd.firebaseio.com",
-  // });
-
-  // // idToken comes from the client app
-  // admin
-  //   .auth()
-  //   .verifyIdToken(tokenGoogle)
-  //   .then(function (decodedToken) {
-  //     console.log("accept");
-
-  //   })
-  //   .catch(function (error) {
-  //     MiscHelper.responsesCustomForbidden(
-  //       res,
-  //       null,
-  //       "Token Google Not Valid"
-  //     );
-  //   });
-
   //START LOGIN GOOGLE
   loginGoogle: (req, res) => {
     let email = req.body.email;
     let tokenGoogle = req.body.tokenGoogle;
+    console.log(tokenGoogle);
+    //Check Token Google
 
-    loginModel
-      .checkUserGoogleLogin(email)
-      .then((data) => {
-        console.log(data);
-        let dataTmp = data;
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+      databaseURL: "https://redrubygroups-f93fd.firebaseio.com",
+    });
 
-        //genereate random token
-        let Randomtoken =
-          Math.random().toString(36).substring(2, 15) +
-          Math.random().toString(36).substring(2, 15);
-
+    // idToken comes from the client app
+    admin
+      .auth()
+      .verifyIdToken(tokenGoogle)
+      .then(function (decodedToken) {
+        //
+        //Accept
+        console.log("accept");
         loginModel
-          .insertToken(Randomtoken, dataTmp.id_user)
-          .then((result) => {
-            //insert new token to member
-            let dataUser = {
-              id_user: dataTmp.id_user,
-              name: dataTmp.name,
-              gender: dataTmp.gender,
-              display_picture:
-                `http://` +
-                process.env.HOST +
-                `:4002/dp/` +
-                dataTmp.display_picture,
-              dob: dataTmp.dob,
-              email: dataTmp.email,
-              type: dataTmp.type,
-              phone: dataTmp.phone,
-              member_id: dataTmp.member_id,
-              session_token: Randomtoken,
-              facebook: dataTmp.facebook,
-              instagram: dataTmp.instagram,
-            };
-            res.json({
-              message: "success",
-              status: true,
-              // code: 200,
-              data: dataUser,
-            });
+          .checkUserGoogleLogin(email)
+          .then((data) => {
+            console.log(data);
+            let dataTmp = data;
+
+            //genereate random token
+            let Randomtoken =
+              Math.random().toString(36).substring(2, 15) +
+              Math.random().toString(36).substring(2, 15);
+
+            loginModel
+              .insertToken(Randomtoken, dataTmp.id_user)
+              .then((result) => {
+                //insert new token to member
+                let dataUser = {
+                  id_user: dataTmp.id_user,
+                  name: dataTmp.name,
+                  gender: dataTmp.gender,
+                  display_picture:
+                    `http://` +
+                    process.env.HOST +
+                    `:4002/dp/` +
+                    dataTmp.display_picture,
+                  dob: dataTmp.dob,
+                  email: dataTmp.email,
+                  member_type: dataTmp.member_type,
+                  phone: dataTmp.phone,
+                  member_id: dataTmp.member_id,
+                  session_token: Randomtoken,
+                  facebook: dataTmp.facebook,
+                  instagram: dataTmp.instagram,
+                };
+                console.log(dataUser);
+                res.json({
+                  message: "success",
+                  status: true,
+                  // code: 200,
+                  data: dataUser,
+                });
+              })
+              .catch((err) => MiscHelper.badRequest(res, err));
           })
-          .catch((err) => MiscHelper.badRequest(res, err));
+          .catch((err) =>
+            res.json({
+              message: "Email or Password Incorrect !",
+              status: false,
+              code: 403,
+              data: null,
+            })
+          );
       })
-      .catch((err) =>
-        res.json({
-          message: "Email or Password Incorrect !",
-          status: false,
-          code: 403,
-          data: null,
-        })
-      );
+      .catch((error) => {
+        //Reject
+        MiscHelper.responsesCustomForbidden(
+          res,
+          null,
+          "Token Google Not Valid",
+          false,
+          403
+        );
+      });
+    // console.log("google error");3
   },
   //END LOGIN GOOGLE
 

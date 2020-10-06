@@ -11,11 +11,13 @@ module.exports = {
         dob: "",
         email: "",
         passwordsql: "",
-        type: "",
+        member_type: "",
         phone: 0,
         member_id: "",
         uuid: "",
-        point_level: "",
+        point_level: 0,
+        facebook: "",
+        instagram: "",
       };
       connection.query(
         "SELECT * FROM user WHERE email= ? ",
@@ -29,13 +31,13 @@ module.exports = {
             data.dob = e.dob;
             data.email = e.email;
             data.passwordsql = e.credential;
-            data.type = e.type;
+            // data.type = e.type;
             data.phone = e.phone;
             data.member_id = e.member_id;
             data.uuid = e.uuid;
+            data.point_level = e.point_level;
             data.facebook = e.facebook;
             data.instagram = e.instagram;
-            data.point_level = e.point_level;
           });
 
           if (!err && result.length > 0) {
@@ -52,13 +54,19 @@ module.exports = {
     return new Promise((resolve, reject) => {
       let data = {
         id_user: "",
-        // name: "",
-        // email: "",
+        name: "",
+        gender: "",
+        display_picture: "",
+        dob: "",
+        email: "",
         // passwordsql: "",
-        type: "",
+        member_type: "",
         phone: 0,
         member_id: "",
         uuid: "",
+        point_level: 0,
+        facebook: "",
+        instagram: "",
       };
       connection.query(
         "SELECT * FROM user WHERE email= ? AND type='Google'",
@@ -66,14 +74,28 @@ module.exports = {
         (err, result) => {
           result.forEach((e) => {
             data.id_user = e.id_user;
-            // data.name = e.name;
-            // data.email = e.email;
+            data.name = e.name;
+            data.gender = e.gender;
+            data.display_picture = e.display_picture;
+            data.dob = e.dob;
+            data.email = e.email;
             // data.passwordsql = e.credential;
-            data.type = e.type;
+            // data.type = e.type;
             data.phone = e.phone;
             data.member_id = e.member_id;
             data.uuid = e.uuid;
+            data.point_level = e.point_level;
+            data.facebook = e.facebook;
+            data.instagram = e.instagram;
           });
+
+          if (data.point_level < 10000) {
+            data.member_type = "RED MEMBER";
+          } else if (data.point_level < 100000) {
+            data.member_type = "GOLD MEMBER";
+          } else if (data.point_level >= 10000) {
+            data.member_type = "BLACK MEMBER";
+          }
 
           if (!err && result.length > 0) {
             resolve(data);
