@@ -184,12 +184,11 @@ module.exports = {
 
   //REGISTER MEMBER GOOGLE
   registerMemberGoogle: (req, res) => {
-    //Hashing Password
-    // const salt = bcrypt.genSaltSync(saltRounds);
     let tokenGoogle = req.body.tokenGoogle;
     // const hash = bcrypt.hashSync(req.body.tokenGoogle, salt);
     // console.log(tokenGoogle);
 
+    //Cheking token Google
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount),
       databaseURL: "https://redrubygroups-f93fd.firebaseio.com",
