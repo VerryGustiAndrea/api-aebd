@@ -17,6 +17,10 @@ admin.initializeApp({
 app.use("/uploads", express.static("./uploads"));
 app.use("/ticket", express.static("./app/helpers/pdf"));
 app.use("/dp", express.static("./uploads/memberDisplayPicture"));
+app.use(
+  "/.well-known/pki-validation/",
+  express.static("../.well-known/pki-validation/")
+);
 app.use(cors());
 
 app.use(bodyParser.json());
