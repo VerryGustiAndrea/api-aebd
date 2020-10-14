@@ -45,6 +45,7 @@ module.exports = {
     let data = {
       name: req.body.name,
       gender: req.body.gender,
+      display_picture: "profile.svg",
       dob: new Date(req.body.dob),
       email: req.body.email,
       credential: hash,
@@ -233,6 +234,7 @@ module.exports = {
           name: req.body.name,
           gender: req.body.gender,
           dob: new Date(req.body.dob),
+          display_picture: "profile.svg",
           email: req.body.email,
           credential: hash,
           type: "Google",

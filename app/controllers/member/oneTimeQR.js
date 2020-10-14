@@ -8,7 +8,7 @@ module.exports = {
     let id_user = req.headers["id_user"];
     let OTQR = new Date().toJSON() + id_user;
 
-    console.log(OTQR);
+    console.log("ini", OTQR);
 
     //JWT set expired 5 minutes
     var token = jwt.sign({ id: id_user, data: OTQR }, "GenerasiOptimis", {
