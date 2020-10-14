@@ -6,6 +6,20 @@ const app = express();
 const cors = require("cors");
 const port = process.env.SERVER_PORT;
 
+//setup ssl
+const https = require("https");
+fs = require("fs");
+
+var key = fs.readFileSync("ssl/private.key");
+var cert = fs.readFileSync("ssl/certificate.crt");
+var ca = fs.readFileSync("ssl/ca_bundle.crt");
+
+var httpsOptions = {
+  key: key,
+  cert: cert,
+  ca: ca,
+};
+
 const admin = require("firebase-admin");
 const serviceAccount = require("./app/config/redrubygroups-f93fd-firebase-adminsdk-2hny4-454f9c9d7f.json");
 
@@ -17,10 +31,7 @@ admin.initializeApp({
 app.use("/uploads", express.static("./uploads"));
 app.use("/ticket", express.static("./app/helpers/pdf"));
 app.use("/dp", express.static("./uploads/memberDisplayPicture"));
-app.use(
-  "/.well-known/pki-validation/",
-  express.static("../.well-known/pki-validation/")
-);
+
 app.use(cors());
 
 app.use(bodyParser.json());
@@ -30,6 +41,6 @@ const router = require("./app/routers/v1/index.js");
 
 app.use("/api", router);
 
-app.listen(port, () => {
+https.createServer(httpsOptions, app).listen(port, () => {
   console.log(`\n App Listen port ${port}`);
 });
