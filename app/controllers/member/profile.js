@@ -60,7 +60,7 @@ module.exports = {
         if (result.length === 0) {
           return MiscHelper.responsesNull(res);
         } else {
-          return MiscHelper.responses(res, images);
+          return MiscHelper.responses(res, process.env.PATH_DP + images);
         }
       })
       .catch((err) => MiscHelper.badRequest(res, err));
