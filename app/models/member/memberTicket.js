@@ -10,7 +10,7 @@ module.exports = {
         "SELECT * FROM ticket  JOIN booking_order ON ticket.id_booking_order=booking_order.id_booking_order JOIN event ON booking_order.id_event=event.id_event WHERE ticket.used=0 AND booking_order.member_id=? AND booking_order.status=3 ORDER BY ticket.id_ticket DESC",
         member_id,
         (err, result) => {
-          console.log(result);
+          // console.log(result);
 
           // console.log(result);
 
