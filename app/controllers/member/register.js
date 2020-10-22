@@ -128,8 +128,8 @@ module.exports = {
                       method: "post",
                       url:
                         "http://" +
-                        process.env.HOST +
-                        ":4004/api/point/transactionPoint", //to Endpoint Check Point
+                        process.env.HOST_POINT +
+                        "/api/point/transactionPoint", //to Endpoint Check Point
                       headers: {},
                       data: dataPointReward,
                     })
@@ -144,6 +144,8 @@ module.exports = {
                     return MiscHelper.badRequest(res, error);
                   }
 
+                  data.display_picture =
+                    "https://" + process.env.HOST_MEMBER + "dp/profile.svg";
                   res.json({
                     message: "Register Success",
                     status: true,
@@ -316,8 +318,8 @@ module.exports = {
                           method: "post",
                           url:
                             "http://" +
-                            process.env.HOST +
-                            ":4004/api/point/transactionPoint", //to Endpoint Check Point
+                            process.env.HOST_POINT +
+                            "/api/point/transactionPoint", //to Endpoint Check Point
                           headers: {},
                           data: dataPointReward,
                         })
@@ -332,6 +334,8 @@ module.exports = {
                         return MiscHelper.badRequest(res, error);
                       }
 
+                      data.display_picture =
+                        "https://" + process.env.HOST_MEMBER + "dp/profile.svg";
                       res.json({
                         message: "Register Success",
                         status: true,
