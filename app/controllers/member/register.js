@@ -145,7 +145,7 @@ module.exports = {
                   }
 
                   data.display_picture =
-                    "https://" + process.env.HOST_MEMBER + "dp/profile.svg";
+                    "https://" + process.env.HOST_MEMBER + "/dp/profile.svg";
                   res.json({
                     message: "Register Success",
                     status: true,
