@@ -127,7 +127,7 @@ module.exports = {
                     axios({
                       method: "post",
                       url:
-                        "http://" +
+                        "https://" +
                         process.env.HOST_POINT +
                         "/api/point/transactionPoint", //to Endpoint Check Point
                       headers: {},
@@ -317,7 +317,7 @@ module.exports = {
                         axios({
                           method: "post",
                           url:
-                            "http://" +
+                            "https://" +
                             process.env.HOST_POINT +
                             "/api/point/transactionPoint", //to Endpoint Check Point
                           headers: {},
@@ -335,7 +335,9 @@ module.exports = {
                       }
 
                       data.display_picture =
-                        "http://" + process.env.HOST_MEMBER + "/dp/profile.svg";
+                        "https://" +
+                        process.env.HOST_MEMBER +
+                        "/dp/profile.svg";
                       res.json({
                         message: "Register Success",
                         status: true,

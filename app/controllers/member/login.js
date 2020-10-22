@@ -35,7 +35,7 @@ module.exports = {
                 name: dataTmp.name,
                 gender: dataTmp.gender,
                 display_picture:
-                  `http://` +
+                  `https://` +
                   process.env.HOST_MEMBER +
                   "/dp/" +
                   dataTmp.display_picture,
@@ -114,7 +114,7 @@ module.exports = {
                   name: dataTmp.name,
                   gender: dataTmp.gender,
                   display_picture:
-                    `http://` +
+                    `https://` +
                     process.env.HOST_MEMBER +
                     `/dp/` +
                     dataTmp.display_picture,
