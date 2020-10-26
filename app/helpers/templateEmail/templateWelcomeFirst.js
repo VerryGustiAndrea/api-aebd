@@ -545,15 +545,14 @@ module.exports = {
                               <p
                               style="
                                 font-family: 'Montserrat', sans-serif;
-                                font-size: 14px;
+                                font-size: 11px;
+                                font-weight: bold;
                                 font-weight: normal;
                                 margin: 0;
                                 margin-bottom: 15px;
                                 line-height: 2em;
                               "
                             >
-                            -------------------------------------------------------------------------------------------------------------------------------
-
                             ** Terms & Conditions:
                             1. Voucher can be redeemed at Red Ruby The Terrace or Red Ruby Club.
                             2. Voucher can be redeemed just once.

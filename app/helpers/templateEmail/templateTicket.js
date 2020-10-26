@@ -481,8 +481,6 @@ module.exports = {
                                   line-height: 2em;
                                 "
                               >
-                              -------------------------------------------------------------------------------------------------------------------------------
-
                               ** If you have booked tables, please be informed about these terms and conditions:
                               This is a non-refundable booking.
                               Table booking can not be rescheduled to another day. Please make sure you book the right date & day of the show.
