@@ -531,6 +531,10 @@ module.exports = {
 
 
                               Warm Regards,
+                              <br>
+                              <br>
+                              <br>
+
                               
                               Red Ruby Group.
 
