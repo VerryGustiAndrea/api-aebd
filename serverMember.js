@@ -79,7 +79,7 @@ app.use("/uploads", express.static("./uploads"));
 app.use("/ticket", express.static("./app/helpers/pdf"));
 app.use("/dp", express.static("./uploads/memberDisplayPicture"));
 
-app.use(cors({ origin: "*" }));
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
