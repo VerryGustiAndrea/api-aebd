@@ -186,7 +186,16 @@ module.exports = {
           const hash = bcrypt.hashSync(newPassword, salt);
           loginModel.newPassword(hash, email).then(() => {
             let transporter = nodemailer.createTransport({
-              service: "gmail",
+              //gmail
+              // service: "gmail",
+              // auth: {
+              //   user: service.email,
+              //   pass: service.password,
+              // },
+
+              host: "mail.redrubygroup.com",
+              port: 465,
+              secure: true,
               auth: {
                 user: service.email,
                 pass: service.password,
