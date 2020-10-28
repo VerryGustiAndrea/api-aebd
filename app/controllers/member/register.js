@@ -15,15 +15,15 @@ const serviceEmailWelcome = require("../../helpers/sendEmail/emailWelcome");
 module.exports = {
   //START REGISTER
   registerMemberEmail: (req, res) => {
-    if (req.body.password.length < 8) {
-      return MiscHelper.responsesCustomForbidden(
-        res,
-        null,
-        "Minimum Password Length is 8 characters",
-        false,
-        403
-      );
-    }
+    // if (req.body.password.length < 8) {
+    //   return MiscHelper.responsesCustomForbidden(
+    //     res,
+    //     null,
+    //     "Minimum Password Length is 8 characters",
+    //     false,
+    //     403
+    //   );
+    // }
 
     //Hashing Password
     const salt = bcrypt.genSaltSync(saltRounds);
