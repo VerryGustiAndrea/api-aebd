@@ -202,11 +202,12 @@ module.exports = {
     // console.log(tokenGoogle);
 
     //Cheking token Google
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-      databaseURL: "https://redrubygroups-f93fd.firebaseio.com",
-    });
-
+    if (!admin.apps.length) {
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+        databaseURL: "https://redrubygroups-f93fd.firebaseio.com",
+      });
+    }
     // idToken comes from the client app
     admin
       .auth()
