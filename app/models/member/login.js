@@ -46,6 +46,13 @@ module.exports = {
           } else if (data.point_level >= 10000) {
             data.member_type = 2;
           }
+
+          if (data.facebook.length == 0) {
+            data.facebook = "";
+          }
+          if (data.instagram.length == 0) {
+            data.instagram = "";
+          }
           if (!err && result.length > 0) {
             resolve(data);
           } else {
@@ -101,6 +108,12 @@ module.exports = {
             data.member_type = 1;
           } else if (data.point_level >= 10000) {
             data.member_type = 2;
+          }
+          if (data.facebook.length == 0) {
+            data.facebook = "";
+          }
+          if (data.instagram.length == 0) {
+            data.instagram = "";
           }
 
           if (!err && result.length > 0) {
