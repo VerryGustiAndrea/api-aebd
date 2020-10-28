@@ -15,6 +15,16 @@ const serviceEmailWelcome = require("../../helpers/sendEmail/emailWelcome");
 module.exports = {
   //START REGISTER
   registerMemberEmail: (req, res) => {
+    if (req.body.password.length < 8) {
+      return MiscHelper.responsesCustomForbidden(
+        res,
+        null,
+        "Minimum Password Length is 8 characters",
+        false,
+        403
+      );
+    }
+
     //Hashing Password
     const salt = bcrypt.genSaltSync(saltRounds);
     const hash = bcrypt.hashSync(req.body.password, salt);
@@ -115,7 +125,7 @@ module.exports = {
                     total_price: 125000,
                     type_order: 7, //identy beli dari siapa web/club/terrace(menggunakan role)
                     status: 1,
-                    desc: "registration reward",
+                    desc: " Welcome Point",
                     payment_date: new Date(),
                     created_at: new Date(),
                   };
@@ -305,7 +315,7 @@ module.exports = {
                         total_price: 125000,
                         type_order: 7, //identy beli dari siapa web/club/terrace(menggunakan role)
                         status: 1,
-                        desc: "registration reward",
+                        desc: "Welcome Point",
                         payment_date: new Date(),
                         created_at: new Date(),
                       };

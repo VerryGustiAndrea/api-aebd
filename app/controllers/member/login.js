@@ -6,6 +6,7 @@ const service = require("../../config/gmail");
 const bcrypt = require("bcrypt");
 const admin = require("firebase-admin");
 const serviceAccount = require("../../config/redrubygroups-f93fd-firebase-adminsdk-2hny4-454f9c9d7f.json");
+const templateForgot = require("../../helpers/templateEmail/forgetPassword");
 
 module.exports = {
   //START LOGIN EMAIL
@@ -195,9 +196,7 @@ module.exports = {
               from: service.email,
               to: email,
               subject: "Forgot Password",
-              html: `dear ${email}, you have request to change password via forgot password,<br><br>
-                            <p>this is your new random Password : <a>${newPassword}</a></p>
-                            <p>please login and change your new random password with your new password, thanks</p>`,
+              html: templateForgot.welcome(email, newPassword),
             };
             transporter
               .sendMail(mailOptions)

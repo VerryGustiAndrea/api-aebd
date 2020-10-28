@@ -1,5 +1,5 @@
 module.exports = {
-  welcome: (name) => {
+  welcome: (email, newPassword) => {
     let welcome =
       `<!DOCTYPE html>
       <html>
@@ -400,8 +400,8 @@ module.exports = {
                                   line-height: 2em;
                                 "
                               >
-                                Hi <span style="color: #be1e2d;">` +
-      name +
+                              dear <span style="color: #be1e2d;">` +
+      email +
       `</span>,
                               </p>
                               <p
@@ -414,10 +414,11 @@ module.exports = {
                                   line-height: 2em;
                                 "
                               >
-                              Thank you for signing up for Red Ruby.
-                           
-                              You now have access to Red Ruby
-                              Membership.
+                               you have request to change password via forgot password,<br><br>
+                              <br>this is your new random Password : <a>` +
+      newPassword +
+      `</a>
+                              <br>please login and change your new random password with your new password, thanks
                               </p>
                               <table
                                 border="0"
