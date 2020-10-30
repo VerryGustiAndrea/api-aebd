@@ -2,6 +2,7 @@ const express = require("express");
 const Router = express.Router();
 
 const multer = require("multer");
+const cors = require("cors");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -31,7 +32,7 @@ Router
   .post("/registerEmail", RegisterController.registerMemberEmail)
   .post("/registerGoogle", RegisterController.registerMemberGoogle)
   .post("/forgotPassword", LoginController.forgotPassword)
-  .put("/changePassword", auth.verify, ProfileController.changePassword)
+  .put("/changePassword", auth.verify, cors(), ProfileController.changePassword)
   .put(
     "/changePhotoProfile",
     upload.single("image"),
