@@ -333,7 +333,23 @@ module.exports = {
                     padding: 10px;
                   "
                 >
-                  
+                  <span
+                    class="preheader"
+                    style="
+                      color: transparent;
+                      display: none;
+                      height: 0;
+                      max-height: 0;
+                      max-width: 0;
+                      opacity: 0;
+                      overflow: hidden;
+                      mso-hide: all;
+                      visibility: hidden;
+                      width: 0;
+                    "
+                    >This is preheader text. Some clients will show this text as a
+                    preview.</span
+                  >
                   <table
                     class="main"
                     style="
@@ -398,11 +414,37 @@ module.exports = {
                                   line-height: 2em;
                                 "
                               >
-                              Thank you for signing up for Red Ruby.
-                           
-                              You now have access to Red Ruby
-                              Membership.
+                              Welcome to Red Ruby Club! 
+                              <br>
+                              <br>
+                              Thank you for joining Red Ruby's membership program and be a part of our incredible journey. 
+                              <br><br>
+                              By becoming our member, you will have more access to stay updated on our ongoing promotions and other exciting things. You will also be able to earn points as much as possible from every transaction you made at our business and partners. 
+                              <br><br>
+                              Eat & drink with us, earn your points, and redeem any special-deals from us!<br>
+                              We can not wait to spend this exciting experience with you.<br>
+                              
                               </p>
+                              <p
+                              style="
+                                font-family: 'Montserrat', sans-serif;
+                                font-size: 14px;
+                                font-weight: normal;
+                                margin: 0;
+                                margin-bottom: 15px;
+                                line-height: 2em;
+                              "
+                            >
+                           
+  Warm Regards,
+  <br>
+  <br>
+  <br>
+  
+  Red Ruby Group.
+  
+  
+                            </p>
                               <table
                                 border="0"
                                 cellpadding="0"
@@ -456,23 +498,8 @@ module.exports = {
                                   </tr>
                                 </tbody>
                               </table>
-
-                              <p
-                              style="
-                                font-family: 'Montserrat', sans-serif;
-                                font-size: 14px;
-                                font-weight: normal;
-                                margin: 0;
-                                margin-bottom: 15px;
-                                line-height: 2em;
-                              "
-                            >
-                            Warm Regards,
-                            <br>
-                            <br>
-                            <br>                            
-                            Red Ruby Group.
-                            </p>
+               
+         
                             </td>
                           </tr>
                         </table>
@@ -539,6 +566,7 @@ module.exports = {
                                 </a>
                               </div>
                             </td>
+                          
                           </tr>
                         </table>
                       </td>
