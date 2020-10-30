@@ -79,12 +79,8 @@ app.use("/uploads", express.static("./uploads"));
 app.use("/ticket", express.static("./app/helpers/pdf"));
 app.use("/dp", express.static("./uploads/memberDisplayPicture"));
 
-// app.use(cors());
-app.use(
-  cors({
-    credentials: true,
-  })
-);
+app.use("*", cors());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
