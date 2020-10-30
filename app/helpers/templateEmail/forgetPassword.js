@@ -333,23 +333,6 @@ module.exports = {
                     padding: 10px;
                   "
                 >
-                  <span
-                    class="preheader"
-                    style="
-                      color: transparent;
-                      display: none;
-                      height: 0;
-                      max-height: 0;
-                      max-width: 0;
-                      opacity: 0;
-                      overflow: hidden;
-                      mso-hide: all;
-                      visibility: hidden;
-                      width: 0;
-                    "
-                    >This is preheader text. Some clients will show this text as a
-                    preview.</span
-                  >
                   <table
                     class="main"
                     style="
@@ -400,7 +383,7 @@ module.exports = {
                                   line-height: 2em;
                                 "
                               >
-                              dear <span style="color: #be1e2d;">` +
+                              Dear <span style="color: #be1e2d;">` +
       email +
       `</span>,
                               </p>
@@ -414,11 +397,18 @@ module.exports = {
                                   line-height: 2em;
                                 "
                               >
-                               you have request to change password via forgot password,<br><br>
-                              <br>this is your new random Password : <a>` +
+                               you have request to change password via forgot password.<br><br>
+                              <br>
+                              This is your temporary Password : <a>` +
       newPassword +
       `</a>
-                              <br>please login and change your new random password with your new password, thanks
+                              <br>
+                              Please login using this temporary password and you change into the new password.
+                              
+                              <br>
+                              <br>
+                              Thank You.
+                              <br>
                               </p>
                               <table
                                 border="0"
@@ -484,7 +474,7 @@ module.exports = {
                                 line-height: 2em;
                               "
                             >
-                            Warm Regards,
+                            Best Regards,
                             <br>
                             <br>
                             <br>                            
