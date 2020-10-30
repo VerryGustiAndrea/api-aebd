@@ -23,31 +23,32 @@ module.exports = {
           profileModel
             .changePassword(hash, id_user)
             .then(() => {
-              res.json({
-                message: "Success change password",
-                status: true,
-                code: 200,
-                data: null,
-              });
+              return MiscHelper.responsesCustom(
+                res,
+                null,
+                "Success cange password, true"
+              );
             })
             .catch((err) => MiscHelper.badRequest(res, err));
         } else {
           console.log("Password incorrect");
-          res.json({
-            message: "Old Password Incorrect !",
-            status: false,
-            code: 403,
-            data: null,
-          });
+          return MiscHelper.responsesCustomForbidden(
+            res,
+            null,
+            "Old Password Incorrect !",
+            false,
+            403
+          );
         }
       })
       .catch((err) =>
-        res.json({
-          message: "Email or Password Incorrect !",
-          status: false,
-          code: 403,
-          data: null,
-        })
+        MiscHelper.responsesCustomForbidden(
+          res,
+          null,
+          "Email or Password Incorrect !",
+          false,
+          403
+        )
       );
   },
 
