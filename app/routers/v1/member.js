@@ -41,7 +41,7 @@ Router
   .put(
     "/changePassword",
     // upload.single("image"),
-    ProfileController.changePassword
+    ProfileController.changePhotoProfile
   )
   .put("/UpdateProfileSosmed", ProfileController.updateProfile)
 
