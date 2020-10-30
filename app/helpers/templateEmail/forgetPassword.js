@@ -397,7 +397,7 @@ module.exports = {
                                   line-height: 2em;
                                 "
                               >
-                               you have request to change password via forgot password.<br><br>
+                               You have request to change password via forgot password.<br><br>
                               <br>
                               This is your temporary Password : <a>` +
       newPassword +
@@ -474,7 +474,7 @@ module.exports = {
                                 line-height: 2em;
                               "
                             >
-                            Warm Regards,
+                            Warm regards,
                             <br>
                             <br>
                             <br>                            
