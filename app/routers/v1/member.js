@@ -31,18 +31,13 @@ Router
   .post("/registerEmail", RegisterController.registerMemberEmail)
   .post("/registerGoogle", RegisterController.registerMemberGoogle)
   .post("/forgotPassword", LoginController.forgotPassword)
-  .put("/changePassword", ProfileController.changePassword)
+  .put("/changePassword", auth.verify(), ProfileController.changePassword)
   .put(
     "/changePhotoProfile",
     upload.single("image"),
     ProfileController.changePhotoProfile
   )
 
-  // .put(
-  //   "/changePassword",
-  //   // upload.single("image"),
-  //   ProfileController.changePhotoProfile
-  // )
   .put("/UpdateProfileSosmed", ProfileController.updateProfile)
 
   .get("/getMemberTicket", MemberTicketController.getMemberTicket)

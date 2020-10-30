@@ -5,7 +5,7 @@ const redeemModels = require("../models/member/redeem");
 
 module.exports = {
   verify: (req, res, next) => {
-    token = req.headers["x-access-token"];
+    token = req.headers["session_token"];
     id_user = req.headers["id_user"];
     member_id = req.headers["member_id"];
     console.log(token, id_user);
