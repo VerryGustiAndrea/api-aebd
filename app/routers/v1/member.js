@@ -31,7 +31,7 @@ Router
   .post("/registerEmail", RegisterController.registerMemberEmail)
   .post("/registerGoogle", RegisterController.registerMemberGoogle)
   .post("/forgotPassword", LoginController.forgotPassword)
-  .put("/changePassword", auth.verify(), ProfileController.changePassword)
+  .put("/changePassword", ProfileController.changePassword)
   .put(
     "/changePhotoProfile",
     upload.single("image"),
