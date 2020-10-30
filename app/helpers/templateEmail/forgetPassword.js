@@ -474,7 +474,7 @@ module.exports = {
                                 line-height: 2em;
                               "
                             >
-                            Best Regards,
+                            Warm Regards,
                             <br>
                             <br>
                             <br>                            
