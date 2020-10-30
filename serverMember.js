@@ -53,22 +53,23 @@ const app = express();
 const cors = require("cors");
 const port = process.env.SERVER_PORT;
 
-//setup ssl
-const https = require("https");
-fs = require("fs");
+// //setup ssl
+// const https = require("https");
+// fs = require("fs");
 
-var key = fs.readFileSync("ssl/private.key");
-var cert = fs.readFileSync("ssl/certificate.crt");
-var ca = fs.readFileSync("ssl/ca_bundle.crt");
+// var key = fs.readFileSync("ssl/private.key");
+// var cert = fs.readFileSync("ssl/certificate.crt");
+// var ca = fs.readFileSync("ssl/ca_bundle.crt");
 
-var httpsOptions = {
-  key: key,
-  cert: cert,
-  ca: ca,
-};
+// var httpsOptions = {
+//   key: key,
+//   cert: cert,
+//   ca: ca,
+// };
 
 const admin = require("firebase-admin");
 const serviceAccount = require("./app/config/redrubygroups-f93fd-firebase-adminsdk-2hny4-454f9c9d7f.json");
+app.use(cors());
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -78,8 +79,6 @@ admin.initializeApp({
 app.use("/uploads", express.static("./uploads"));
 app.use("/ticket", express.static("./app/helpers/pdf"));
 app.use("/dp", express.static("./uploads/memberDisplayPicture"));
-
-app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
