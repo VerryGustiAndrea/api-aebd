@@ -17,6 +17,22 @@ module.exports = {
     });
   },
 
+  checkPhone: (phone) => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        "SELECT phone from user WHERE phone=?",
+        phone,
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
+
   registerUser: (data) => {
     return new Promise((resolve, reject) => {
       connection.query("INSERT INTO user SET ?", data, (err, result) => {

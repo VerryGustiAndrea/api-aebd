@@ -14,7 +14,7 @@ const serviceEmailWelcome = require("../../helpers/sendEmail/emailWelcome");
 
 module.exports = {
   //START REGISTER
-  registerMemberEmail: (req, res) => {
+  registerMemberEmail: async (req, res) => {
     // if (req.body.password.length < 8) {
     //   return MiscHelper.responsesCustomForbidden(
     //     res,
@@ -79,6 +79,24 @@ module.exports = {
         403
       );
     }
+
+    //check phone number
+    let checkPhone = [];
+    try {
+      checkPhone = await registerModel.checkPhone(data.phone);
+    } catch (error) {
+      MiscHelper.badRequest(res, error);
+    }
+    if (checkPhone[0]) {
+      return MiscHelper.responsesCustomForbidden(
+        res,
+        null,
+        "Phone Number Already Registered!",
+        false,
+        403
+      );
+    }
+
     //get email from database where email=email_inputan
     registerModel
       .checkEmailRegister(data.email)
@@ -212,7 +230,7 @@ module.exports = {
     admin
       .auth()
       .verifyIdToken(tokenGoogle)
-      .then(function (decodedToken) {
+      .then(async function (decodedToken) {
         console.log("accept");
         ////
 
@@ -270,6 +288,24 @@ module.exports = {
             403
           );
         }
+
+        //check phone number
+        let checkPhone = [];
+        try {
+          checkPhone = await registerModel.checkPhone(data.phone);
+        } catch (error) {
+          MiscHelper.badRequest(res, error);
+        }
+        if (checkPhone[0]) {
+          return MiscHelper.responsesCustomForbidden(
+            res,
+            null,
+            "Phone Number Already Registered!",
+            false,
+            403
+          );
+        }
+
         //get email from database where email=email_inputan
         registerModel
           .checkEmailRegister(data.email)
