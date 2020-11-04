@@ -52,7 +52,7 @@ module.exports = {
     resultPrint.message = "Bad Request !";
     resultPrint.status = false;
     resultPrint.code = 400;
-    // resultPrint.err = err || null;
+    resultPrint.data = err || null;
     return res.status(resultPrint.code).json(resultPrint);
   },
 
