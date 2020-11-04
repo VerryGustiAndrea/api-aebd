@@ -31,9 +31,9 @@ module.exports = {
 
   responsesNull: (res, err) => {
     let resultPrint = {};
-    resultPrint.message = "Success";
+    resultPrint.message = "Data not Found";
     resultPrint.status = true;
-    resultPrint.code = 200;
+    resultPrint.code = 404;
     resultPrint.data = null;
     return res.status(resultPrint.code).json(resultPrint);
   },
@@ -58,7 +58,7 @@ module.exports = {
 
   serverNotFound: (res, err) => {
     let resultPrint = {};
-    resultPrint.status = "Server Not Found";
+    resultPrint.msg = "Server Not Found";
     resultPrint.status = false;
     resultPrint.code = 404;
     resultPrint.err = err || null;
