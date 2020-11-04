@@ -76,7 +76,7 @@ module.exports = {
             return MiscHelper.responsesCustomForbidden(
               res,
               null,
-              "your point isn't enough",
+              "Your point isn't enough",
               false,
               403
             );
