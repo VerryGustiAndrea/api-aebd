@@ -5,7 +5,7 @@ module.exports = {
   updateQRUser: (token, id_user) => {
     return new Promise((resolve, reject) => {
       connection.query(
-        "UPDATE user SET OTQR= ? WHERE id_user=?",
+        "UPDATE user SET OTQR= ?, OTQR_used=0 WHERE id_user=?",
         [token, id_user],
         (err, result) => {
           if (!err) {
