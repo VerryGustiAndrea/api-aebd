@@ -134,6 +134,9 @@ module.exports = {
               registerModel
                 .registerUser(data)
                 .then((result) => {
+                  // console.log(result);
+                  data.id_user = result.insertId;
+
                   // try {
                   let dataPointReward = {
                     name: data.name,
