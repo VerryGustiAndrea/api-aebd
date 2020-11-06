@@ -56,7 +56,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       console.log(data);
       connection.query(
-        `INSERT INTO log_history_point SET id_point=${data.id_point}, email="${data.email}", order_id=${data.order_id}, order_picture="${data.order_picture}", total_point_before=${data.total_point_before}, total_point_operation=${data.total_point_operation}, total_point_after=${data.total_point_after},type_order=${data.type_order}, total_spend=${data.total_spend}, description="${data.desc}"`,
+        `INSERT INTO log_history_point SET id_point=${data.id_point}, email="${data.email}", order_id=${data.order_id}, order_picture="${data.order_picture}", total_point_before=${data.total_point_before}, total_point_operation=-${data.total_point_operation}, total_point_after=${data.total_point_after},type_order=${data.type_order}, total_spend=${data.total_spend}, description="${data.desc}"`,
 
         (err, result) => {
           if (!err) {
