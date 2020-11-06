@@ -59,7 +59,7 @@ module.exports = {
               await donateModel.updatePointDonation(total_donate);
               await donateModel.updatePointUser(total_donate, id_user);
               await donateModel.insertLogHistoryPoint(DataHistoryPointUser);
-              await donateModel.insertLogHistoryPoint(
+              await donateModel.insertLogHistoryPointDonate(
                 DataHistoryPointDonateUser
               );
             } catch (error) {
