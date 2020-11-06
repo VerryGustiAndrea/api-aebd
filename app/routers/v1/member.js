@@ -54,7 +54,7 @@ Router
   .post("/OTQR", MemberOneTimeQRController.insertOTQR)
 
   //donation
-  .get("/donate/:id_user", donateController.donate);
+  .post("/donate/:id_user", donateController.donate);
 
 //Member Redeem
 // .post("/redeem", MemberRedeemController.redeem)
