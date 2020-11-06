@@ -9,6 +9,5 @@ const donate = require("./donate");
 const Router = express.Router();
 
 Router.use("/member", member);
-Router.use("/donate", donate);
 
 module.exports = Router;
