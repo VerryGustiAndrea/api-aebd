@@ -1,5 +1,6 @@
 const express = require("express");
 const Router = express.Router();
+const auth = require("../../helpers/auth");
 
 const multer = require("multer");
 
@@ -21,8 +22,7 @@ const MemberHistoryTransactionController = require("../../controllers/member/his
 const MemberHistoryPointController = require("../../controllers/member/historyPoint");
 // const MemberRedeemController = require("../../controllers/member/redeem");
 const MemberOneTimeQRController = require("../../controllers/member/oneTimeQR");
-// const TransactionController = require("../../controllers/transaction/transaction");
-const auth = require("../../helpers/auth");
+const donateController = require("../../controllers/donate/donate");
 
 Router
   // Member
@@ -51,7 +51,10 @@ Router
     MemberHistoryPointController.getAllHistoryPoint
   )
   //Member Generate One Time QR
-  .post("/OTQR", MemberOneTimeQRController.insertOTQR);
+  .post("/OTQR", MemberOneTimeQRController.insertOTQR)
+
+  //donation
+  .get("/donate/:id_user", donateController.donate);
 
 //Member Redeem
 // .post("/redeem", MemberRedeemController.redeem)
