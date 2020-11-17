@@ -49,7 +49,7 @@ module.exports = {
 
   badRequest: (res, err) => {
     let resultPrint = {};
-    resultPrint.message = "Bad Request !";
+    resultPrint.message = "Bad Request !" + err;
     resultPrint.status = false;
     resultPrint.code = 400;
     resultPrint.data = err || null;
