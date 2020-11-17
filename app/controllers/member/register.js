@@ -198,7 +198,7 @@ module.exports = {
                     total_price: 125000,
                     type_order: 7, //identy beli dari siapa web/club/terrace(menggunakan role)
                     status: 1,
-                    desc: " Welcome Point",
+                    desc: "Welcome Point",
                     payment_date: new Date(),
                     created_at: new Date(),
                   };
@@ -221,7 +221,9 @@ module.exports = {
                         // return MiscHelper.responses(res, result.data);
                         console.log("suscess insert log_history_point");
                       })
-                      .catch((err) => console.log(err));
+                      .catch((err) => {
+                        return MiscHelper.badRequest(res, err);
+                      });
                   } catch (error) {
                     console.log("Error Earn Point");
                     return MiscHelper.badRequest(res, error);
