@@ -24,6 +24,58 @@ module.exports = {
     //     403
     //   );
     // }
+    //CHECK FULLFIELD
+    //check fulfilled form
+    console.log(req.body.name);
+    if (req.body.name.length == 0 || req.body.name == undefined) {
+      return MiscHelper.responsesCustomForbidden(
+        res,
+        null,
+        "Fullname not fulfilled ",
+        false,
+        403
+      );
+    } else if (req.body.gender.length == 0 || req.body.gender == undefined) {
+      return MiscHelper.responsesCustomForbidden(
+        res,
+        null,
+        "Gender not fulfilled ",
+        false,
+        403
+      );
+    } else if (req.body.dob.length == 0 || req.body.dob == undefined) {
+      return MiscHelper.responsesCustomForbidden(
+        res,
+        null,
+        "Date Of Birth not fulfilled ",
+        false,
+        403
+      );
+    } else if (req.body.email.length == 0 || req.body.email == undefined) {
+      return MiscHelper.responsesCustomForbidden(
+        res,
+        null,
+        "Email not fulfilled ",
+        false,
+        403
+      );
+    } else if (req.body.email.password == 0 || req.body.password == undefined) {
+      return MiscHelper.responsesCustomForbidden(
+        res,
+        null,
+        "Password not fulfilled ",
+        false,
+        403
+      );
+    } else if (req.body.email.phone == 0 || req.body.phone == undefined) {
+      return MiscHelper.responsesCustomForbidden(
+        res,
+        null,
+        "Phone not fulfilled ",
+        false,
+        403
+      );
+    }
 
     //Hashing Password
     const salt = bcrypt.genSaltSync(saltRounds);
