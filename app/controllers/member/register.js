@@ -196,7 +196,7 @@ module.exports = {
                     order_id: new Date().valueOf(),
                     order_picture: "",
                     total_price: 125000,
-                    type_order: 7, //identy beli dari siapa web/club/terrace(menggunakan role)
+                    type_order: 0, //identy beli dari siapa web/club/terrace(menggunakan role)
                     status: 1,
                     desc: "Welcome Point",
                     payment_date: new Date(),
@@ -210,7 +210,7 @@ module.exports = {
                     axios({
                       method: "post",
                       url:
-                        "https://" +
+                        "http://" +
                         process.env.HOST_POINT +
                         "/api/point/transactionPoint", //to Endpoint Check Point
                       headers: {},
@@ -221,9 +221,7 @@ module.exports = {
                         // return MiscHelper.responses(res, result.data);
                         console.log("suscess insert log_history_point");
                       })
-                      .catch((err) => {
-                        return MiscHelper.badRequest(res, err);
-                      });
+                      .catch((err) => MiscHelper.badRequest(res, err));
                   } catch (error) {
                     console.log("Error Earn Point");
                     return MiscHelper.badRequest(res, error);
