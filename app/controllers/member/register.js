@@ -196,7 +196,7 @@ module.exports = {
                     order_id: new Date().valueOf(),
                     order_picture: "",
                     total_price: 125000,
-                    type_order: 0, //identy beli dari siapa web/club/terrace(menggunakan role)
+                    type_order: 8, //identy beli dari siapa web/club/terrace(menggunakan role)
                     status: 1,
                     desc: "Welcome Point",
                     payment_date: new Date(),
