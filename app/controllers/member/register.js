@@ -91,8 +91,8 @@ module.exports = {
 
     //Generate Member ID
     let generateMemberId = () => {
-      let chars = "abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ";
-      let huruf = chars.substr(Math.floor(Math.random() * 53), 2);
+      let chars = "ABCDEFGHIJKLMNOPQURSTUVWXYZ";
+      let huruf = chars.substr(Math.floor(Math.random() * 26), 2);
       let s = new Date().valueOf().toString();
       let number = s.substr(s.length - 3);
       let member_id = "RR-" + number + huruf;
