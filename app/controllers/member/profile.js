@@ -73,6 +73,12 @@ module.exports = {
       facebook: req.body.facebook,
       instagram: req.body.instagram,
     };
+    if (data.facebook == undefined) {
+      data.facebook = "";
+    }
+    if (data.instagram == undefined) {
+      data.instagram = "";
+    }
     profileModel
       .editProfile(data, id_user)
       .then((result) => {

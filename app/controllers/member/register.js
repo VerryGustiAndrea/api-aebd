@@ -252,7 +252,7 @@ module.exports = {
 
             //Send Email Welcome
             // console.log(data.email, data.name);
-            // serviceEmailWelcome.sendMail(req, res, data.email, data.name);
+            serviceEmailWelcome.sendMail(req, res, data.email, data.name);
           });
         } else {
           res.json({
