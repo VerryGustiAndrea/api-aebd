@@ -114,6 +114,7 @@ module.exports = {
       type: "Email",
       phone: req.body.phone,
       member_id: generateMemberId(),
+      member_type: 0,
       uuid: Randomtoken,
       point_level: 50,
       facebook: "",
