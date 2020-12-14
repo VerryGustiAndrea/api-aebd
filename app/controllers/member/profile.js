@@ -1,6 +1,7 @@
 const profileModel = require("../../models/member/profile");
 const MiscHelper = require("../../../app/helpers/helpers");
 const bcrypt = require("bcrypt");
+const sharp = require("sharp");
 
 module.exports = {
   changePassword: (req, res) => {
@@ -53,6 +54,28 @@ module.exports = {
   },
 
   changePhotoProfile: (req, res) => {
+    if (req.file == undefined) {
+      return MiscHelper.responsesCustomForbidden(
+        res,
+        null,
+        "Error No Image",
+        false,
+        403
+      );
+    }
+
+    //compress
+    sharp("./uploads/memberDisplayPicture/" + req.file.filename)
+      .toBuffer()
+      .then((data) => {
+        sharp(data)
+          .jpeg({ quality: 30 })
+          .toFile("./uploads/memberDisplayPicture/" + req.file.filename);
+      })
+      .catch((err) => {
+        console.log("error compressing file");
+      });
+
     let id_user = req.headers["id_user"];
     let images = req.file.filename;
     profileModel

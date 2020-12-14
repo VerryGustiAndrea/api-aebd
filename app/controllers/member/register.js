@@ -99,6 +99,16 @@ module.exports = {
       return member_id;
     };
 
+    // //Generate Member ID
+    // let generateMemberId = () => {
+    //   let chars = "1234567890";
+    //   let huruf = chars.substr(Math.floor(Math.random() * 8), 3);
+    //   let s = new Date().valueOf().toString();
+    //   let number = s.substr(s.length - 5);
+    //   let member_id = huruf + number;
+    //   return member_id;
+    // };
+
     //GenerateToken
     let Randomtoken =
       Math.random().toString(36).substring(2, 15) +
@@ -186,7 +196,37 @@ module.exports = {
 
               registerModel
                 .registerUser(data)
-                .then((result) => {
+                .then(async (result) => {
+                  // //INSERT TO DATABASE RAPTOR
+
+                  // let sex = "";
+                  // if (data.gender == "male") {
+                  //   sex = "M";
+                  // } else if (data.gender == "female") {
+                  //   sex = "F";
+                  // } else {
+                  //   sex = "O";
+                  // }
+                  // let dataRaptor = [
+                  //   {
+                  //     MembershipId: result.insertId,
+                  //     CardNumber: data.member_id,
+                  //     FirstName: data.name,
+                  //     Sex: sex,
+                  //     eMail: data.email,
+                  //     ExpiryDate: new Date(),
+                  //     DateJoined: new Date(),
+                  //     MemberType: 0,
+                  //   },
+                  // ];
+
+                  // try {
+                  //   await registerModel.insertMembers(dataRaptor);
+                  //   console.log("register success");
+                  // } catch (error) {
+                  //   console.log(error);
+                  // }
+
                   // console.log(result);
                   data.id_user = result.insertId;
 
@@ -203,8 +243,6 @@ module.exports = {
                     payment_date: new Date(),
                     created_at: new Date(),
                   };
-
-                  // console.log(dataPointReward);
 
                   //Earn Point
                   try {
