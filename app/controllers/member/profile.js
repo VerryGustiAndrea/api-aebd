@@ -65,12 +65,18 @@ module.exports = {
     }
 
     //compress
-    sharp("./uploads/memberDisplayPicture/" + req.file.filename)
+    sharp(
+      "./apimember.redrubygroup.com/uploads/memberDisplayPicture/" +
+        req.file.filename
+    )
       .toBuffer()
       .then((data) => {
         sharp(data)
           .jpeg({ quality: 30 })
-          .toFile("./uploads/memberDisplayPicture/" + req.file.filename);
+          .toFile(
+            "./apimember.redrubygroup.com/uploads/memberDisplayPicture/" +
+              req.file.filename
+          );
       })
       .catch((err) => {
         console.log("error compressing file");
