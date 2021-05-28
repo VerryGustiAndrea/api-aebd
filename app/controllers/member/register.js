@@ -27,7 +27,7 @@ module.exports = {
     //CHECK FULLFIELD
     //check fulfilled form
     console.log(req.body.name);
-    if (req.body.name.length == 0 || req.body.name == undefined) {
+    if (!req.body.name) {
       return MiscHelper.responsesCustomForbidden(
         res,
         null,
@@ -35,7 +35,7 @@ module.exports = {
         false,
         403
       );
-    } else if (req.body.gender.length == 0 || req.body.gender == undefined) {
+    } else if (!req.body.gender) {
       return MiscHelper.responsesCustomForbidden(
         res,
         null,
@@ -43,7 +43,15 @@ module.exports = {
         false,
         403
       );
-    } else if (req.body.dob.length == 0 || req.body.dob == undefined) {
+    } else if (!req.body.password) {
+      return MiscHelper.responsesCustomForbidden(
+        res,
+        null,
+        "Gender not fulfilled ",
+        false,
+        403
+      )
+    } else if (!req.body.dob) {
       return MiscHelper.responsesCustomForbidden(
         res,
         null,
@@ -51,7 +59,7 @@ module.exports = {
         false,
         403
       );
-    } else if (req.body.email.length == 0 || req.body.email == undefined) {
+    } else if (!req.body.email) {
       return MiscHelper.responsesCustomForbidden(
         res,
         null,
@@ -59,7 +67,7 @@ module.exports = {
         false,
         403
       );
-    } else if (req.body.email.password == 0 || req.body.password == undefined) {
+    } else if (!req.body.email) {
       return MiscHelper.responsesCustomForbidden(
         res,
         null,
@@ -67,7 +75,7 @@ module.exports = {
         false,
         403
       );
-    } else if (req.body.email.phone == 0 || req.body.phone == undefined) {
+    } else if (!req.body.phone) {
       return MiscHelper.responsesCustomForbidden(
         res,
         null,
