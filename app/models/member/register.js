@@ -5,9 +5,9 @@ const sql = require("mssql");
 const config = {
   user: "sa",
   password: "123456",
-  server: "192.168.1.65",
+  server: "192.168.1.98",
   database: "dbElektrik",
-  port: 1034,
+  port: 1025,
   pool: {
     max: 230,
     min: 0,
@@ -17,7 +17,7 @@ const config = {
     enableArithAbort: true,
     database: "dbElektrik",
     instancename: "SQLEXPRESS",
-    port: 1034,
+    port: 1025,
   },
 };
 
@@ -134,7 +134,7 @@ module.exports = {
   checkPointTMP: (email) => {
     return new Promise((resolve, reject) => {
       connection.query(
-        "SELECT * FROM log_history_point WHERE email=? ORDER BY created_at DESC LIMIT 1",
+        "SELECT * FROM transaction WHERE email=? ORDER BY created_at DESC LIMIT 1",
         email,
         (err, result) => {
           if (!err) {
