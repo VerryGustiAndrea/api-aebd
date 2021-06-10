@@ -12,7 +12,7 @@ module.exports = {
         if (result.length === 0) {
           return MiscHelper.responsesNull(res);
         } else {
-          // console.log(result);
+          console.log(result);
           return MiscHelper.responses(res, result);
         }
       })
