@@ -5,7 +5,7 @@ module.exports = {
   getAllHistoryPoint: (email) => {
     return new Promise((resolve, reject) => {
       connection.query(
-        "SELECT transaction.email, transaction.order_id, transaction.raptor_sales_no, transaction.crypto_burger, transaction.claimed, transaction.order_picture, transaction.total_point_before, transaction.total_point_operation,transaction.total_point_after, transaction.total_spend,o.role_name AS type_order,transaction.description,  transaction.created_at FROM transaction JOIN (SELECT * FROM role)AS  o ON transaction.type_order=o.id_role  WHERE transaction.email=? ORDER BY transaction.id_transaction DESC",
+        "SELECT transaction.email, transaction.id_transaction, transaction.order_id, transaction.raptor_sales_no, transaction.crypto_burger, transaction.claimed, transaction.order_picture, transaction.total_point_before, transaction.total_point_operation,transaction.total_point_after, transaction.total_spend,o.role_name AS type_order,transaction.description,  transaction.created_at FROM transaction JOIN (SELECT * FROM role)AS  o ON transaction.type_order=o.id_role  WHERE transaction.email=? ORDER BY transaction.id_transaction DESC",
         email,
         (err, result) => {
           result.map((e) => {
