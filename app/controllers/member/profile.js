@@ -135,9 +135,7 @@ module.exports = {
         else {
           profileModel.updateFCM(data)
             .then((result) => {
-              if (result > 0) {
-                return MiscHelper.responses(res, "Success update FCM Token");
-              }
+              return MiscHelper.responses(res, "Success update FCM Token");
             }).catch((err) =>
               MiscHelper.responsesCustomForbidden(
                 res,
