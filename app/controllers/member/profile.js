@@ -113,4 +113,41 @@ module.exports = {
       })
       .catch((err) => MiscHelper.badRequest(res, err));
   },
+
+
+  updateFCM: (req, res) => {
+    let data = {
+      id_user: req.headers["id_user"],
+      fcm_token: req.body.fcm_token
+    }
+
+    profileModel
+      .checkFcmToken(data.fcm_token).then((result) => {
+        if (result.length > 0) {
+          return MiscHelper.responsesCustomForbidden(
+            res,
+            null,
+            "Device Already registered on FCM",
+            false,
+            403
+          );
+        }
+        else {
+          profileModel.updateFCM(data)
+            .then((result) => {
+              if (result > 0) {
+                return MiscHelper.responses(res, "Success update FCM Token");
+              }
+            }).catch((err) =>
+              MiscHelper.responsesCustomForbidden(
+                res,
+                null,
+                "Error update FCM Token ",
+                false,
+                403
+              )
+            )
+        }
+      })
+  }
 };

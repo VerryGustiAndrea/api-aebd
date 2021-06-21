@@ -1,4 +1,5 @@
 const registerModel = require("../../models/member/register");
+const loginModel = require("../../models/member/login");
 var jwt = require("jsonwebtoken");
 const MiscHelper = require("../../helpers/helpers");
 const nodemailer = require("nodemailer");
@@ -140,6 +141,8 @@ module.exports = {
       verified: 0,
     };
 
+
+
     // console.log(data);
     if (calculate_age(new Date(data.dob)) < 18) {
       return MiscHelper.responsesCustomForbidden(
@@ -254,7 +257,7 @@ module.exports = {
 
                   //Earn Point
                   try {
-                    axios({
+                    await axios({
                       method: "post",
                       url:
                         "http://" +
@@ -277,6 +280,33 @@ module.exports = {
                   data.display_picture =
                     "https://" + process.env.HOST_MEMBER + "/dp/profile.svg";
                   data.member_type = 0;
+
+
+                  //insert new fcm token
+                  if (req.body.fcm_token) {
+                    let data_fcm_token = {
+                      id_user: data.id_user,
+                      fcm_token: req.body.fcm_token
+                    }
+                    loginModel
+                      .checkFcmToken(data_fcm_token.fcm_token).then((result) => {
+                        if (result.length > 0) {
+                          console.log("Device Already registered on FCM")
+                        }
+                        else {
+                          loginModel
+                            .insertFcmToken(data_fcm_token)
+                            .then((result) => {
+                              if (result > 0) {
+                                console.log("Success update FCM Token")
+                              }
+                            }).catch((err) =>
+                              console.log("Error update FCM Token ", err)
+                            );
+                        }
+                      })
+                  }
+
                   res.json({
                     message: "Register Success",
                     status: true,

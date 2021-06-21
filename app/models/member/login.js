@@ -142,6 +142,38 @@ module.exports = {
     });
   },
 
+  checkFcmToken: (fcm_token) => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        "SELECT * FROM user_fcm_token where fcm_token=?",
+        fcm_token,
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
+
+  insertFcmToken: (data) => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        "INSERT user_fcm_token SET ?",
+        data,
+        (err, result) => {
+          if (!err) {
+            resolve(result.insertId);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
+
   //FORGOT PASSWORD
 
   checkEmail: (email) => {

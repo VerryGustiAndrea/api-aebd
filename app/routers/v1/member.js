@@ -12,9 +12,9 @@ const storage = multer.diskStorage({
     cb(
       null,
       new Date().toISOString() +
-        file.originalname
-          .replace(new RegExp(":", "g"), "_")
-          .replace(new RegExp(" ", "g"), "-")
+      file.originalname
+        .replace(new RegExp(":", "g"), "_")
+        .replace(new RegExp(" ", "g"), "-")
     );
   },
 });
@@ -45,6 +45,7 @@ Router
   )
 
   .put("/UpdateProfileSosmed", ProfileController.updateProfile)
+  .put("/UpdateFcmToken", ProfileController.updateFCM)
 
   .get("/getMemberTicket", MemberTicketController.getMemberTicket)
   .get(

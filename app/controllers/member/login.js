@@ -49,6 +49,31 @@ module.exports = {
                 facebook: dataTmp.facebook,
                 instagram: dataTmp.instagram,
               };
+
+              //insert new fcm token
+              if (req.body.fcm_token) {
+                let data_fcm_token = {
+                  id_user: dataUser.id_user,
+                  fcm_token: req.body.fcm_token
+                }
+                loginModel
+                  .checkFcmToken(data_fcm_token.fcm_token).then((result) => {
+                    if (result.length > 0) {
+                      console.log("Device Already registered on FCM")
+                    }
+                    else {
+                      loginModel
+                        .insertFcmToken(data_fcm_token)
+                        .then((result) => {
+                          if (result > 0) {
+                            console.log("Success update FCM Token")
+                          }
+                        }).catch((err) =>
+                          console.log("Error update FCM Token ", err)
+                        );
+                    }
+                  })
+              }
               res.json({
                 message: "success",
                 status: true,
