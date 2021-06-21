@@ -147,5 +147,15 @@ module.exports = {
             )
         }
       })
+  },
+
+
+  getUserFcmToken: (req, res) => {
+    let id_user = req.params.id_user
+    profileModel.getUserFcmToken(id_user)
+      .then((result) => {
+        return MiscHelper.responses(res, result);
+      })
+      .catch((err) => MiscHelper.badRequest(res, err));
   }
 };

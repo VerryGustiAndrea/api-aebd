@@ -99,6 +99,22 @@ module.exports = {
     });
   },
 
+  getUserFcmToken: (id_user) => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        "SELECT * FROM user_fcm_token WHERE id_user=?",
+        id_user,
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
+
   // checkUser: (email) => {
   //   return new Promise((resolve, reject) => {
   //     let data = {

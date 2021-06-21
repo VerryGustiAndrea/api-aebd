@@ -44,7 +44,8 @@ Router
     ProfileController.changePhotoProfile
   )
 
-  .put("/UpdateProfileSosmed", ProfileController.updateProfile)
+  .put("/UpdateFcmToken", ProfileController.updateFCM)
+  .get("/getUserFcmToken/:id_user", ProfileController.getUserFcmToken)
   .put("/UpdateFcmToken", ProfileController.updateFCM)
 
   .get("/getMemberTicket", MemberTicketController.getMemberTicket)
