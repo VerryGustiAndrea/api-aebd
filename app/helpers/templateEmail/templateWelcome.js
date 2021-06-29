@@ -318,7 +318,7 @@ module.exports = {
                   >
                     <img
                       style="width: 100%;"
-                      src="https://redruby.club/wp-content/uploads/2020/08/logo-red-ruby.png"
+                      src="https://redrubygroup.com/assets/emails/logo-red-ruby.png"
                       alt=""
                     />
                   </div>
@@ -525,7 +525,7 @@ module.exports = {
                                 >
                                 <img
                                   style="display: inline-block; width: 100%;"
-                                  src="https://redruby.club/wp-content/uploads/2020/08/logo-facebook.png"
+                                  src="https://redrubygroup.com/assets/emails/logo-facebook.png"
                                   alt=""
                                 />
                                 </a>
@@ -543,7 +543,7 @@ module.exports = {
                                 >
                                   <img
                                     style="display: inline-block; width: 100%;"
-                                    src="https://redruby.club/wp-content/uploads/2020/08/logo-instagram.png"
+                                    src="https://redrubygroup.com/assets/emails/logo-instagram.png"
                                     alt=""
                                   />
                                 </a>

@@ -318,7 +318,7 @@ module.exports = {
                 >
                   <img
                     style="width: 100%;"
-                    src="https://redruby.club/wp-content/uploads/2020/08/logo-red-ruby.png"
+                    src="https://redrubygroup.com/assets/emails/logo-red-ruby.png"
                     alt=""
                   />
                 </div>
@@ -553,7 +553,7 @@ Red Ruby Group.
                               >
                               <img
                                 style="display: inline-block; width: 100%;"
-                                src="https://redruby.club/wp-content/uploads/2020/08/logo-facebook.png"
+                                src="https://redrubygroup.com/assets/emails/logo-facebook.png"
                                 alt=""
                               />
                               </a>
@@ -571,25 +571,7 @@ Red Ruby Group.
                               >
                                 <img
                                   style="display: inline-block; width: 100%;"
-                                  src="https://redruby.club/wp-content/uploads/2020/08/logo-instagram.png"
-                                  alt=""
-                                />
-                              </a>
-                            </div>
-                          </td>
-                          <td>
-                            <div style="width: 40px; margin: auto;">
-                              <a
-                                href="#"
-                                style="
-                                  width: 100%;
-                                  text-align: center;
-                                  display: block;
-                                "
-                              >
-                                <img
-                                  style="display: inline-block; width: 100%;"
-                                  src="https://redruby.club/wp-content/uploads/2020/08/logo-twitter.png"
+                                  src="https://redrubygroup.com/assets/emails/logo-instagram.png"
                                   alt=""
                                 />
                               </a>
