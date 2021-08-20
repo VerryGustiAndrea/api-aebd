@@ -7,19 +7,19 @@ module.exports = {
     //Send Email Welcome
     let transporter = nodemailer.createTransport({
       //gmail
-      // service: "gmail",
-      // auth: {
-      //   user: service.email,
-      //   pass: service.password,
-      // },
-
-      host: "mail.redrubygroup.com",
-      port: 465,
-      secure: true,
+      service: "gmail",
       auth: {
         user: service.email,
         pass: service.password,
       },
+
+      // host: "mail.redrubygroup.com",
+      // port: 465,
+      // secure: true,
+      // auth: {
+      //   user: service.email,
+      //   pass: service.password,
+      // },
     });
     let mailOptions = {
       from: service.email,
