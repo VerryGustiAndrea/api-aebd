@@ -260,9 +260,7 @@ module.exports = {
                     await axios({
                       method: "post",
                       url:
-                        "http://" +
-                        process.env.HOST_POINT +
-                        "/api/point/transactionPoint", //to Endpoint Check Point
+                        "http://" + process.env.HOST_POINT + "/api/point/transactionPoint", //to Endpoint Check Point
                       headers: {},
                       data: dataPointReward,
                     })
