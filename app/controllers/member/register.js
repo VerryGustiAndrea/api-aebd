@@ -269,7 +269,7 @@ module.exports = {
                         // return MiscHelper.responses(res, result.data);
                         console.log("suscess insert log_history_point");
                       })
-                      .catch((err) => MiscHelper.badRequest(res, err));
+                      .catch((err) => console.log("error api point") && MiscHelper.badRequest(res, err));
                   } catch (error) {
                     console.log("Error Earn Point");
                     return MiscHelper.badRequest(res, error);
