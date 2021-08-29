@@ -1,5 +1,5 @@
 const service = {
-  email: "noreply@redrubygroup.com",
-  password: "Redrubygroup123",
+  email: "redrubygroups@gmail.com",
+  password: "generasioptimis",
 };
 module.exports = service;
