@@ -13,12 +13,12 @@ module.exports = {
       //   pass: service.password,
       // },
 
-      host: "mail.redrubygroup.com",
+      host: "islandconcepts.com",
       port: 465,
       secure: true,
       auth: {
-        user: service.email,
-        pass: service.password,
+        user: "noreply@redrubygroup.com",
+        pass: "generasioptimis",
       },
     });
     let mailOptions = {

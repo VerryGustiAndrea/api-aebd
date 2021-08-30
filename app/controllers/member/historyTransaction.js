@@ -3,7 +3,7 @@ const MiscHelper = require("../../helpers/helpers");
 
 module.exports = {
   getAllHistoryTransaction: (req, res) => {
-    let email = req.headers["email"];
+    let email = req.res.user.email
 
     memberModels
       .getAllHistoryTransaction(email)

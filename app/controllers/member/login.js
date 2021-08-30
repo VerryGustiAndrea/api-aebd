@@ -1,5 +1,4 @@
 const loginModel = require("../../models/member/login");
-var jwt = require("jsonwebtoken");
 const MiscHelper = require("../../helpers/helpers");
 const nodemailer = require("nodemailer");
 const service = require("../../config/gmail");
@@ -7,12 +6,15 @@ const bcrypt = require("bcrypt");
 const admin = require("firebase-admin");
 const serviceAccount = require("../../config/redrubygroups-f93fd-firebase-adminsdk-2hny4-454f9c9d7f.json");
 const templateForgot = require("../../helpers/templateEmail/forgetPassword");
+const jwt = require("jsonwebtoken");
+
 
 module.exports = {
   //START LOGIN EMAIL
   loginEmail: (req, res) => {
     let email = req.body.email;
     let password = req.body.password;
+
 
     loginModel
       .checkUserEmailLogin(email)
@@ -22,13 +24,14 @@ module.exports = {
         if (passwordCheck == true) {
           //cek password
           console.log("Password match");
-          //genereate random token
-          let Randomtoken =
-            Math.random().toString(36).substring(2, 15) +
-            Math.random().toString(36).substring(2, 15);
+          //jwt
+          console.log(dataTmp)
+          const payload = { id_user: dataTmp.id_user, email }
+          const token = jwt.sign(payload, process.env.TOKEN_KEY);
+          console.log(token)
 
           loginModel
-            .insertToken(Randomtoken, dataTmp.id_user)
+            .insertToken(token, dataTmp.id_user)
             .then((result) => {
               //insert new token to member
               let dataUser = {
@@ -45,11 +48,10 @@ module.exports = {
                 member_type: dataTmp.member_type,
                 phone: dataTmp.phone,
                 member_id: dataTmp.member_id,
-                session_token: Randomtoken,
+                session_token: token,
                 facebook: dataTmp.facebook,
                 instagram: dataTmp.instagram,
               };
-
               //insert new fcm token
               if (req.body.fcm_token) {
                 let data_fcm_token = {
@@ -218,16 +220,16 @@ module.exports = {
               //   pass: service.password,
               // },
 
-              host: "mail.redrubygroup.com",
+              host: "islandconcepts.com",
               port: 465,
               secure: true,
               auth: {
-                user: service.email,
-                pass: service.password,
+                user: "noreply@redrubygroup.com",
+                pass: "generasioptimis",
               },
             });
             let mailOptions = {
-              from: service.email,
+              from: "noreply@redrubygroup.com",
               to: email,
               subject: "Forgot Password",
               html: templateForgot.welcome(email, newPassword),
@@ -243,6 +245,7 @@ module.exports = {
                 });
               })
               .catch((err) => {
+                console.log(err)
                 res.status(500).json({
                   message: err,
                   status: false,

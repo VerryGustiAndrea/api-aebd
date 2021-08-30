@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = {
   insertOTQR: (req, res) => {
-    let id_user = req.headers["id_user"];
+    let id_user = req.res.user.id_user
     let OTQR = new Date().toJSON() + id_user;
 
     console.log("ini", OTQR);

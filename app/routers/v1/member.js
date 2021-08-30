@@ -1,6 +1,7 @@
 const express = require("express");
 const Router = express.Router();
 const auth = require("../../helpers/auth");
+const jwt = require("../../helpers/middleware/auth");
 
 const multer = require("multer");
 
@@ -11,7 +12,8 @@ const storage = multer.diskStorage({
   filename: function (req, file, cb) {
     cb(
       null,
-      new Date().toISOString() +
+      new Date().toISOString().replace(new RegExp(":", "g"), "_")
+        .replace(new RegExp(" ", "g"), "-") +
       file.originalname
         .replace(new RegExp(":", "g"), "_")
         .replace(new RegExp(" ", "g"), "-")
@@ -37,32 +39,29 @@ Router
   .post("/registerEmail", RegisterController.registerMemberEmail)
   .post("/registerGoogle", RegisterController.registerMemberGoogle)
   .post("/forgotPassword", LoginController.forgotPassword)
-  .put("/changePassword", ProfileController.changePassword)
+  .put("/changePassword", jwt.verifyToken, ProfileController.changePassword)
   .put(
     "/changePhotoProfile",
-    upload.single("image"),
+    upload.single("image"), jwt.verifyToken,
     ProfileController.changePhotoProfile
   )
 
-  .put("/UpdateFcmToken", ProfileController.updateFCM)
-  .get("/getUserFcmToken/:id_user", ProfileController.getUserFcmToken)
-  .put("/UpdateFcmToken", ProfileController.updateFCM)
+  .put("/UpdateProfileSosmed", jwt.verifyToken, ProfileController.updateProfile)
+  .get("/getUserFcmToken/:id_user", jwt.verifyToken, ProfileController.getUserFcmToken)
+  .put("/UpdateFcmToken", jwt.verifyToken, ProfileController.updateFCM)
 
-  .get("/getMemberTicket", MemberTicketController.getMemberTicket)
+  .get("/getMemberTicket", jwt.verifyToken, MemberTicketController.getMemberTicket)
   .get(
-    "/getMemberHistoryTransaction",
-    // auth.verify,
-    MemberHistoryTransactionController.getAllHistoryTransaction
+    "/getMemberHistoryTransaction", jwt.verifyToken, MemberHistoryTransactionController.getAllHistoryTransaction
   )
   .get(
-    "/getMemberHistoryPoint",
-    MemberHistoryPointController.getAllHistoryPoint
+    "/getMemberHistoryPoint", jwt.verifyToken, MemberHistoryPointController.getAllHistoryPoint
   )
   //Member Generate One Time QR
-  .post("/OTQR", MemberOneTimeQRController.insertOTQR)
+  .post("/OTQR", jwt.verifyToken, MemberOneTimeQRController.insertOTQR)
 
   //donation
-  .post("/donate/:id_user", donateController.donate);
+  .post("/donate/:id_user", jwt.verifyToken, donateController.donate);
 
 //Member Redeem
 // .post("/redeem", MemberRedeemController.redeem)

@@ -5,7 +5,7 @@ const sharp = require("sharp");
 
 module.exports = {
   changePassword: (req, res) => {
-    let id_user = req.headers["id_user"];
+    let id_user = req.res.user.id_user
     let new_password = req.body.new_password;
     let old_password = req.body.old_password;
     const saltRounds = 10;
@@ -54,6 +54,8 @@ module.exports = {
   },
 
   changePhotoProfile: (req, res) => {
+    console.log(req.res.user)
+
     if (req.file == undefined) {
       return MiscHelper.responsesCustomForbidden(
         res,
@@ -76,7 +78,7 @@ module.exports = {
         console.log("error compressing file");
       });
 
-    let id_user = req.headers["id_user"];
+    let id_user = req.res.user.id_user
     let images = req.file.filename;
     profileModel
       .changePhotoProfile(images, id_user)
@@ -91,7 +93,7 @@ module.exports = {
   },
 
   updateProfile: (req, res) => {
-    let id_user = req.headers["id_user"];
+    let id_user = req.res.user.id_user
     let data = {
       facebook: req.body.facebook,
       instagram: req.body.instagram,
@@ -117,7 +119,7 @@ module.exports = {
 
   updateFCM: (req, res) => {
     let data = {
-      id_user: req.headers["id_user"],
+      id_user: req.res.user.id_user,
       fcm_token: req.body.fcm_token
     }
 

@@ -4,8 +4,7 @@ const bcrypt = require("bcrypt");
 
 module.exports = {
   getMemberTicket: (req, res) => {
-    // console.log("access");
-    let member_id = req.headers["member_id"];
+    let member_id = req.res.user.member_id
     // console.log(member_id);
     memberModels
       .getMemberTicket(member_id)

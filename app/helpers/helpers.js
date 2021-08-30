@@ -40,9 +40,9 @@ module.exports = {
 
   sessionExpried: (res, err) => {
     let resultPrint = {};
-    resultPrint.message = "Session Expired";
+    resultPrint.message = "Unauthorized";
     resultPrint.status = false;
-    resultPrint.code = 403;
+    resultPrint.code = 401;
     resultPrint.data = null;
     return res.status(resultPrint.code).json(resultPrint);
   },
