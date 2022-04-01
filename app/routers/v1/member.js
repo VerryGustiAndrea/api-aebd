@@ -31,6 +31,7 @@ const MemberHistoryPointController = require("../../controllers/member/historyPo
 // const MemberRedeemController = require("../../controllers/member/redeem");
 const MemberOneTimeQRController = require("../../controllers/member/oneTimeQR");
 const donateController = require("../../controllers/donate/donate");
+const memberController = require("../../controllers/member/member");
 
 Router
   // Member
@@ -61,7 +62,12 @@ Router
   .post("/OTQR", jwt.verifyToken, MemberOneTimeQRController.insertOTQR)
 
   //donation
-  .post("/donate/:id_user", jwt.verifyToken, donateController.donate);
+  .post("/donate/:id_user", jwt.verifyToken, donateController.donate)
+
+
+  //check member
+  .get("/checkMember/:email", memberController.checkMemberEmail);
+
 
 //Member Redeem
 // .post("/redeem", MemberRedeemController.redeem)

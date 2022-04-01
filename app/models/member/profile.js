@@ -1,6 +1,23 @@
 const connection = require("../../config/db");
 
 module.exports = {
+
+  checkMemberByEmail: (id_user) => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        "SELECT * FROM user WHERE email=?",
+        id_user,
+        (err, result) => {
+          if (!err) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
+
   //CHANGE PASSWORD
   checkOldPassword: (id_user) => {
     return new Promise((resolve, reject) => {

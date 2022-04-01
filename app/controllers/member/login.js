@@ -21,6 +21,7 @@ module.exports = {
       .then((data) => {
         let dataTmp = data;
         let passwordCheck = bcrypt.compareSync(password, dataTmp.passwordsql);
+        console.log(passwordCheck)
         if (passwordCheck == true) {
           //cek password
           console.log("Password match");
@@ -196,6 +197,7 @@ module.exports = {
     // console.log(email);
     // password generator
     let newPassword = Math.random().toString(36).substring(2, 8);
+    console.log(newPassword)
     //check email
     loginModel
       .checkEmail(email)
