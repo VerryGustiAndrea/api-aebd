@@ -30,10 +30,10 @@ module.exports = {
           const payload = { id_user: dataTmp.id_user, email }
           const token = jwt.sign(payload, process.env.TOKEN_KEY);
           console.log(token)
+
           loginModel
             .insertToken(token, dataTmp.id_user)
             .then((result) => {
-
               //insert new token to member
               let dataUser = {
                 id_user: dataTmp.id_user,
@@ -77,10 +77,14 @@ module.exports = {
                     }
                   })
               }
-              return MiscHelper.responses(res, dataUser);
-
+              res.json({
+                message: "success",
+                status: true,
+                code: 200,
+                data: dataUser,
+              });
             })
-            .catch((err) => console.log(err));
+            .catch((err) => MiscHelper.badRequest(res, err));
         } else {
           console.log("Password incorrect");
           res.json({
@@ -92,7 +96,6 @@ module.exports = {
         }
       })
       .catch((err) =>
-        console.log(err),
         res.json({
           message: "Email or Password Incorrect !",
           status: false,
