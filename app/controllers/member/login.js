@@ -84,7 +84,7 @@ module.exports = {
                 data: dataUser,
               });
             })
-            .catch((err) => MiscHelper.badRequest(res, err));
+            .catch((err) => console.log(err), MiscHelper.badRequest(res, err));
         } else {
           console.log("Password incorrect");
           res.json({
