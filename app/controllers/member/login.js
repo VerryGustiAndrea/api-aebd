@@ -84,7 +84,7 @@ module.exports = {
                 message: "success",
                 status: true,
                 code: 200,
-                data: dataUser,
+                data: true,
               });
             })
             .catch((err) => console.log(err));
