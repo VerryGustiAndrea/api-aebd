@@ -96,6 +96,7 @@ module.exports = {
         }
       })
       .catch((err) =>
+        console.log(err),
         res.json({
           message: "Email or Password Incorrect !",
           status: false,
