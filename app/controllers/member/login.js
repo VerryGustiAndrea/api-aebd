@@ -78,7 +78,7 @@ module.exports = {
                   })
               }
 
-              res.json({
+              return res.json({
                 message: "success",
                 status: true,
                 code: 200,
