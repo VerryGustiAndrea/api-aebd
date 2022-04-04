@@ -30,10 +30,10 @@ module.exports = {
           const payload = { id_user: dataTmp.id_user, email }
           const token = jwt.sign(payload, process.env.TOKEN_KEY);
           console.log(token)
-
           loginModel
             .insertToken(token, dataTmp.id_user)
             .then((result) => {
+
               //insert new token to member
               let dataUser = {
                 id_user: dataTmp.id_user,
@@ -53,6 +53,8 @@ module.exports = {
                 facebook: dataTmp.facebook,
                 instagram: dataTmp.instagram,
               };
+              console.log(dataUser)
+
               //insert new fcm token
               if (req.body.fcm_token) {
                 let data_fcm_token = {
@@ -77,7 +79,7 @@ module.exports = {
                     }
                   })
               }
-              console.log("disini")
+
               res.json({
                 message: "success",
                 status: true,
