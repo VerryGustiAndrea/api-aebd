@@ -77,13 +77,8 @@ module.exports = {
                     }
                   })
               }
+              return MiscHelper.responses(res, dataUser);
 
-              return res.json({
-                message: "success",
-                status: true,
-                code: 200,
-                data: dataUser,
-              });
             })
             .catch((err) => console.log(err));
         } else {
