@@ -215,23 +215,23 @@ module.exports = {
           const hash = bcrypt.hashSync(newPassword, salt);
           loginModel.newPassword(hash, email).then(() => {
             let transporter = nodemailer.createTransport({
-              //gmail
-              // service: "gmail",
-              // auth: {
-              //   user: service.email,
-              //   pass: service.password,
-              // },
-
-              host: "islandconcepts.com",
-              port: 465,
-              secure: true,
+              // gmail
+              service: "gmail",
               auth: {
-                user: "noreply@redrubygroup.com",
-                pass: "generasioptimis",
+                user: service.email,
+                pass: service.password,
               },
+
+              // host: "islandconcepts.com",
+              // port: 465,
+              // secure: true,
+              // auth: {
+              //   user: "noreply.redruby@gmail.com",
+              //   pass: "generasioptimis",
+              // },
             });
             let mailOptions = {
-              from: "noreply@redrubygroup.com",
+              from: "noreply.redruby@gmail.com",
               to: email,
               subject: "Forgot Password",
               html: templateForgot.welcome(email, newPassword),
