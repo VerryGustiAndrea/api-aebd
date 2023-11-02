@@ -25,12 +25,6 @@ const upload = multer({ storage });
 const RegisterController = require("../../controllers/member/register");
 const LoginController = require("../../controllers/member/login");
 const ProfileController = require("../../controllers/member/profile");
-const MemberTicketController = require("../../controllers/member/memberTicket");
-const MemberHistoryTransactionController = require("../../controllers/member/historyTransaction");
-const MemberHistoryPointController = require("../../controllers/member/historyPoint");
-// const MemberRedeemController = require("../../controllers/member/redeem");
-const MemberOneTimeQRController = require("../../controllers/member/oneTimeQR");
-const donateController = require("../../controllers/donate/donate");
 const memberController = require("../../controllers/member/member");
 
 Router
@@ -41,38 +35,15 @@ Router
   .post("/registerGoogle", RegisterController.registerMemberGoogle)
   .post("/forgotPassword", LoginController.forgotPassword)
   .put("/changePassword", jwt.verifyToken, ProfileController.changePassword)
-  .put(
-    "/changePhotoProfile",
-    upload.single("image"), jwt.verifyToken,
-    ProfileController.changePhotoProfile
-  )
-
-  .put("/UpdateProfileSosmed", jwt.verifyToken, ProfileController.updateProfile)
-  .get("/getUserFcmToken/:id_user", jwt.verifyToken, ProfileController.getUserFcmToken)
-  .put("/UpdateFcmToken", jwt.verifyToken, ProfileController.updateFCM)
-
-  .get("/getMemberTicket", jwt.verifyToken, MemberTicketController.getMemberTicket)
-  .get(
-    "/getMemberHistoryTransaction", jwt.verifyToken, MemberHistoryTransactionController.getAllHistoryTransaction
-  )
-  .get(
-    "/getMemberHistoryPoint", jwt.verifyToken, MemberHistoryPointController.getAllHistoryPoint
-  )
-  //Member Generate One Time QR
-  .post("/OTQR", jwt.verifyToken, MemberOneTimeQRController.insertOTQR)
-
-  //donation
-  .post("/donate/:id_user", jwt.verifyToken, donateController.donate)
-
+  // .put(
+  //   "/changePhotoProfile",
+  //   upload.single("image"), jwt.verifyToken,
+  //   ProfileController.changePhotoProfile
+  // )
 
   //check member
   .get("/checkMember/:email", memberController.checkMemberEmail);
 
 
-//Member Redeem
-// .post("/redeem", MemberRedeemController.redeem)
-
-//TmpMember
-// .post("/tixr", TransactionController.fromTixr);
 
 module.exports = Router;

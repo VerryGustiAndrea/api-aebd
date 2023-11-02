@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 const connection = require("../config/db");
 const MiscHelper = require("../../app/helpers/helpers");
-const redeemModels = require("../models/member/redeem");
 
 module.exports = {
   verify: (req, res, next) => {
@@ -30,29 +29,4 @@ module.exports = {
     );
   },
 
-  verifyQR: (req, res, next) => {
-    // console.log(req.body.OTQR.slice(24));
-    let id_user = req.body.OTQR.slice(24);
-    let qr = req.body.OTQR;
-    redeemModels.checkMemberRedeemSession(id_user).then((result) => {
-      // console.log(result);
-
-      token = result[0].OTQR;
-      try {
-        //check verify
-        const decoded = jwt.verify(token, "GenerasiOptimis");
-
-        //next action
-        console.log("QR Valid");
-        next();
-        // return member;
-      } catch (err) {
-        console.log(err);
-        res.json({
-          msg: "QR Expried",
-          status: false,
-        });
-      }
-    });
-  },
 };

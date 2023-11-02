@@ -1,26 +1,6 @@
 const connection = require("../../config/db");
 const sql = require("mssql");
 
-//mssql
-const config = {
-  user: "sa",
-  password: "123456",
-  server: "192.168.1.98",
-  database: "dbElektrik",
-  port: 1025,
-  pool: {
-    max: 230,
-    min: 0,
-  },
-  encrypt: false,
-  options: {
-    enableArithAbort: true,
-    database: "dbElektrik",
-    instancename: "SQLEXPRESS",
-    port: 1025,
-  },
-};
-
 module.exports = {
   checkEmailRegister: (email) => {
     return new Promise((resolve, reject) => {
@@ -66,38 +46,6 @@ module.exports = {
     });
   },
 
-  insertMembers: (data) => {
-    console.log(data);
-    return new Promise((resolve, reject) => {
-      sql.connect(config, (err) => {
-        console.log(data.length);
-
-        data.forEach((element) => {
-          const request = new sql.Request();
-          console.log(element);
-          // insert;
-          let cols = [];
-          let inputs = [];
-          for (let k in element) {
-            request.input(k, element[k]);
-            cols.push(k);
-            inputs.push("@" + k);
-          }
-          request.query(
-            `INSERT INTO Members (${cols.toString()}) values (${inputs.toString()})`,
-            (err, result) => {
-              if (!err) {
-                // console.log(result);
-                resolve(result);
-              } else {
-                reject(new Error(err));
-              }
-            }
-          );
-        });
-      });
-    });
-  },
 
   checkToken: (member_id) => {
     return new Promise((resolve, reject) => {

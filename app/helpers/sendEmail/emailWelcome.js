@@ -7,24 +7,18 @@ module.exports = {
     //Send Email Welcome
     let transporter = nodemailer.createTransport({
       //gmail
-      // service: "gmail",
-      // auth: {
-      //   user: service.email,
-      //   pass: service.password,
-      // },
-
-      host: "islandconcepts.com",
-      port: 465,
-      secure: true,
+      service: "gmail",
       auth: {
-        user: "noreply@redrubygroup.com",
-        pass: "generasioptimis",
+        user: service.email,
+        pass: service.password,
       },
+
+   
     });
     let mailOptions = {
       from: service.email,
       to: email,
-      subject: "Welcome To Red Ruby",
+      subject: "Welcome To AEBD Conference",
       html: template.welcome(name),
     };
     transporter
