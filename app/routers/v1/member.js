@@ -29,10 +29,8 @@ const memberController = require("../../controllers/member/member");
 
 Router
   // Member
-  .post("/loginEmail", LoginController.loginEmail)
-  .post("/loginGoogle", LoginController.loginGoogle)
-  .post("/registerEmail", RegisterController.registerMemberEmail)
-  .post("/registerGoogle", RegisterController.registerMemberGoogle)
+  .post("/login", RegisterController.loginEmail)
+  .post("/register", RegisterController.registerMemberEmail)
   .post("/forgotPassword", LoginController.forgotPassword)
   .put("/changePassword", jwt.verifyToken, ProfileController.changePassword)
   // .put(

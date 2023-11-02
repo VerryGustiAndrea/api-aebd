@@ -19,6 +19,7 @@ module.exports = {
     loginModel
       .checkUserEmailLogin(email)
       .then((data) => {
+        console.log(data)
         let dataTmp = data;
         let passwordCheck = bcrypt.compareSync(password, dataTmp.passwordsql);
         console.log(passwordCheck)

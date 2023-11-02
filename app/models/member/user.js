@@ -18,21 +18,6 @@ module.exports = {
     });
   },
 
-  checkPhone: (phone) => {
-    return new Promise((resolve, reject) => {
-      connection.query(
-        "SELECT phone from user WHERE phone=?",
-        phone,
-        (err, result) => {
-          if (!err) {
-            resolve(result);
-          } else {
-            reject(new Error(err));
-          }
-        }
-      );
-    });
-  },
 
   registerUser: (data) => {
     return new Promise((resolve, reject) => {
@@ -63,11 +48,28 @@ module.exports = {
     });
   },
 
-  checkTmpUser: (email) => {
+  checkUserEmailLogin: (email) => {
+    return new Promise((resolve, reject) => {
+ 
+      connection.query(
+        "SELECT * FROM user WHERE email= ? ",
+        email,
+        (err, result) => {        
+          if (!err && result.length > 0) {
+            resolve(result);
+          } else {
+            reject(new Error(err));
+          }
+        }
+      );
+    });
+  },
+
+  insertToken: (token, id) => {
     return new Promise((resolve, reject) => {
       connection.query(
-        "SELECT * FROM tmp_user WHERE email=?",
-        email,
+        "UPDATE user SET token=? , updatedAt=? WHERE id=?",
+        [token,Date.now(),  id],
         (err, result) => {
           if (!err) {
             resolve(result);
@@ -78,36 +80,4 @@ module.exports = {
       );
     });
   },
-
-  checkPointTMP: (email) => {
-    return new Promise((resolve, reject) => {
-      connection.query(
-        "SELECT * FROM transaction WHERE email=? ORDER BY created_at DESC LIMIT 1",
-        email,
-        (err, result) => {
-          if (!err) {
-            resolve(result);
-          } else {
-            reject(new Error(err));
-          }
-        }
-      );
-    });
-  },
-
-  // insertRelUser: (dataUserNew) => {
-  //   return new Promise((resolve, reject) => {
-  //     connection.query(
-  //       "INSERT INTO rel_user SET ?",
-  //       dataUserNew,
-  //       (err, result) => {
-  //         if (!err) {
-  //           resolve(result);
-  //         } else {
-  //           reject(new Error(err));
-  //         }
-  //       }
-  //     );
-  //   });
-  // },
 };
